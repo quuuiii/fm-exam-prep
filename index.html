@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Financial Management Exam Prep 財務管理考試複習</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Source+Serif+4:wght@500;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f4ef; --paper:#fffdf8; --ink:#1f2328; --muted:#5b616b; --line:#e3ddd0;
+  --accent:#1d4e5f; --accent-soft:#e3eef1; --gold:#a8742a; --gold-soft:#f6ecd9;
+  --zh:#6b3b2a; --ok:#2f6b3a;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#15181b; --paper:#1c2024; --ink:#e8e6e1; --muted:#a3a8ae; --line:#30363c;
+    --accent:#7fb7c9; --accent-soft:#1f3239; --gold:#d8a75c; --gold-soft:#2e2619; --zh:#e2b8a3; --ok:#8fcf9a; }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 "Noto Sans TC",system-ui,sans-serif}
+header.top{background:var(--accent);color:#fff;padding:28px 20px 20px}
+@media (prefers-color-scheme: dark){header.top{background:#12303a}}
+header.top h1{font-family:"Source Serif 4",serif;font-size:1.7rem;margin:0 0 4px;line-height:1.25}
+header.top p{margin:0;opacity:.85;font-size:.95rem}
+nav.tabs{position:sticky;top:0;z-index:20;display:flex;gap:4px;overflow-x:auto;background:var(--paper);border-bottom:1px solid var(--line);padding:6px 10px}
+nav.tabs a{flex:0 0 auto;padding:8px 14px;border-radius:8px;text-decoration:none;color:var(--muted);font-weight:500;font-size:.92rem;white-space:nowrap}
+nav.tabs a.on{background:var(--accent-soft);color:var(--accent)}
+nav.tabs a.soon{opacity:.55}
+main{max-width:920px;margin:0 auto;padding:18px 16px 80px}
+.view{display:none}.view.on{display:block}
+.chapnav{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 22px}
+.chapnav a{font-size:.85rem;padding:6px 12px;border:1px solid var(--line);border-radius:999px;color:var(--accent);text-decoration:none;background:var(--paper)}
+section.chapter{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px 18px;margin:0 0 26px}
+section.chapter>h2{font-family:"Source Serif 4",serif;font-size:1.45rem;margin:0 0 4px;color:var(--accent);line-height:1.3}
+section.chapter>h2 small{display:block;font-family:"Noto Sans TC";font-size:1rem;color:var(--zh);font-weight:500}
+h3{font-size:1.1rem;margin:26px 0 10px;padding-left:10px;border-left:4px solid var(--gold);line-height:1.4}
+h3 .zh{color:var(--zh);font-weight:500}
+ul.bi{padding-left:1.1em;margin:8px 0}
+ul.bi>li{margin:0 0 12px}
+.en{display:block}
+.zh{display:block;color:var(--zh);font-size:.96em}
+.tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.04em;padding:1px 7px;border-radius:4px;background:var(--gold-soft);color:var(--gold);margin-right:6px;vertical-align:1px}
+.formula{border:1px solid var(--line);border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:10px;padding:14px 14px 10px;margin:14px 0}
+.formula .name{font-weight:700;font-size:.95rem;margin-bottom:6px}
+.formula .name .zh{display:inline;margin-left:6px}
+.eq{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:1.02rem;background:var(--paper);border-radius:8px;padding:10px 12px;margin:6px 0 10px;overflow-x:auto;white-space:nowrap}
+.eq sup,.eq sub{font-size:.75em}
+table.vars{width:100%;border-collapse:collapse;font-size:.9rem;margin:4px 0 8px}
+table.vars td{border-top:1px solid var(--line);padding:6px 6px;vertical-align:top}
+table.vars td:first-child{font-family:"JetBrains Mono",monospace;white-space:nowrap;font-weight:500;width:1%;color:var(--accent)}
+.intu{font-size:.92rem;margin-top:6px}
+.intu b{color:var(--gold)}
+.ex{background:var(--gold-soft);border-radius:10px;padding:12px 14px;margin:12px 0;font-size:.93rem}
+.ex .h{font-weight:700;color:var(--gold);margin-bottom:4px}
+.ex code{font-family:"JetBrains Mono",monospace;font-size:.9em}
+table.cmp{width:100%;border-collapse:collapse;font-size:.88rem;margin:10px 0;display:block;overflow-x:auto}
+table.cmp th,table.cmp td{border:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top}
+table.cmp th{background:var(--accent-soft);color:var(--accent)}
+.note{border:1px dashed var(--gold);border-radius:10px;padding:12px 14px;font-size:.92rem;margin:14px 0;background:var(--paper)}
+.empty{text-align:center;padding:40px 16px;color:var(--muted)}
+.empty h2{font-family:"Source Serif 4",serif;color:var(--accent)}
+.toTop{position:fixed;right:16px;bottom:18px;background:var(--accent);color:#fff;border-radius:999px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:1.2rem;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>Financial Management — Exam Prep<br>財務管理 — 考試總複習</h1>
+  <p>Ross · Westerfield · Jordan, <i>Fundamentals of Corporate Finance</i> · Bilingual EN / 繁中</p>
+</header>
+<nav class="tabs" id="tabs">
+  <a href="#part1" data-v="part1">Part 1 · 觀念與公式</a>
+  <a href="#part2" data-v="part2">Part 2 · 個案分析</a>
+  <a href="#part3" data-v="part3" class="soon">Part 3 · 題庫 (coming)</a>
+</nav>
+<main>
+
+<!-- ================= PART 1 ================= -->
+<div class="view" id="v-part1">
+<div class="chapnav">
+  <a href="#part1" data-jump="ch1">Ch 1 Intro 導論</a>
+  <a href="#part1" data-jump="ch2">Ch 2 Statements 財報</a>
+  <a href="#part1" data-jump="ch4">Ch 4 TVM 貨幣時間價值</a>
+  <a href="#part1" data-jump="ch5">Ch 5 Annuities & Loans 年金與貸款</a>
+  <a href="#part1" data-jump="cheat">Formula Sheet 公式總表</a>
+</div>
+
+<div class="note"><span class="tag">BATCH 1</span>
+<span class="en">This batch covers Chapters 1, 2, 4 and 5 from your course slides. Chapter 3 (ratio analysis) is not among your uploaded files; Chapter 6 (Bonds) comes in the next batch.</span>
+<span class="zh">本批次涵蓋課程投影片第 1、2、4、5 章。第 3 章（財務比率分析）不在已上傳檔案中；第 6 章（債券）將於下一批次加入。</span></div>
+
+<!-- ============ CH 1 ============ -->
+<section class="chapter" id="ch1">
+<h2>Chapter 1 · Introduction to Corporate Finance<small>第 1 章 · 公司理財導論</small></h2>
+
+<h3>1.1 Five Basic Areas of Finance <span class="zh">財務的五大領域</span></h3>
+<ul class="bi">
+<li><span class="en"><b>Corporate finance</b> — how firms raise and invest money (the focus of this course).</span><span class="zh"><b>公司理財</b>：企業如何籌資與投資（本課程重點）。</span></li>
+<li><span class="en"><b>Investments</b> — financial assets such as stocks and bonds: pricing, risk and return, portfolio management.</span><span class="zh"><b>投資學</b>：股票、債券等金融資產的評價、風險報酬與投資組合管理。</span></li>
+<li><span class="en"><b>Financial institutions</b> — banks, insurers, securities firms and other intermediaries.</span><span class="zh"><b>金融機構</b>：銀行、保險公司、證券商等金融中介。</span></li>
+<li><span class="en"><b>International finance</b> — exchange rates, cross-border investment and financing.</span><span class="zh"><b>國際財務</b>：匯率、跨國投資與融資。</span></li>
+<li><span class="en"><b>Real estate</b> and related asset markets.</span><span class="zh"><b>不動產</b>及相關資產市場。</span></li>
+<li><span class="en"><i>Course example:</i> a financial holding company such as Cathay FHC spans several areas at once (banking, insurance, securities, investment trust).</span><span class="zh"><i>課堂案例</i>：國泰金控同時橫跨多個領域（銀行、保險、證券、投信）。</span></li>
+</ul>
+
+<h3>1.2 Three Financial Management Decisions <span class="zh">三大財務管理決策</span></h3>
+<ul class="bi">
+<li><span class="en"><b>Capital budgeting</b> — which long-term investments (projects, fixed assets) should the firm make? Evaluate the <i>size, timing and risk</i> of future cash flows.</span><span class="zh"><b>資本預算</b>：公司應投資哪些長期資產或專案？評估未來現金流量的<i>大小、時點與風險</i>。</span></li>
+<li><span class="en"><b>Capital structure</b> — how should the firm finance those investments: what mix of long-term debt and equity, and from which sources?</span><span class="zh"><b>資本結構</b>：如何為投資籌資？長期負債與權益的比例及資金來源為何？</span></li>
+<li><span class="en"><b>Working capital management</b> — managing short-term assets and liabilities (cash, inventory, receivables, payables) so day-to-day operations are never short of cash.</span><span class="zh"><b>營運資金管理</b>：管理短期資產與負債（現金、存貨、應收、應付帳款），確保日常營運不缺現金。</span></li>
+<li><span class="en"><b>Who decides:</b> the CFO oversees the <i>treasurer</i> (cash, capital budgeting, financing) and the <i>controller</i> (accounting, taxes, cost accounting).</span><span class="zh"><b>誰負責</b>：財務長 (CFO) 督導<i>財務主管</i>（現金、資本預算、融資）與<i>會計主管</i>（會計、稅務、成本會計）。</span></li>
+</ul>
+
+<h3>1.3 Forms of Business Organization <span class="zh">企業組織型態</span></h3>
+<table class="cmp">
+<tr><th>Feature 特徵</th><th>Sole proprietorship 獨資</th><th>Partnership 合夥</th><th>Corporation 公司</th></tr>
+<tr><td>Liability 責任</td><td>Unlimited 無限責任</td><td>General partners unlimited; limited partners limited 普通合夥人無限、有限合夥人有限</td><td>Limited 有限責任</td></tr>
+<tr><td>Life 存續</td><td>Ends with owner 隨業主結束</td><td>Ends when a general partner leaves/dies 普通合夥人退出即解散</td><td>Unlimited 永續經營</td></tr>
+<tr><td>Ownership transfer 所有權移轉</td><td>Difficult 困難</td><td>Difficult 困難</td><td>Easy (sell shares) 容易（買賣股票）</td></tr>
+<tr><td>Raising capital 籌資能力</td><td>Limited to owner's wealth 限於業主財富</td><td>Limited 有限</td><td>Easiest 最容易</td></tr>
+<tr><td>Taxation 課稅</td><td>Personal income tax only 僅個人所得稅</td><td>Personal income tax only 僅個人所得稅</td><td><b>Double taxation</b> (corporate + dividend) <b>雙重課稅</b></td></tr>
+<tr><td>Formation 設立</td><td>Cheapest, easiest 最便宜簡單</td><td>Easy 容易</td><td>Costly (articles of incorporation, bylaws) 成本高（章程、細則）</td></tr>
+</table>
+<ul class="bi">
+<li><span class="en"><b>Key idea:</b> in a corporation, <i>ownership is separated from management</i> — shareholders elect the board, the board hires managers. This is what makes the agency problem possible.</span><span class="zh"><b>關鍵觀念</b>：公司制下<i>所有權與經營權分離</i>——股東選董事會、董事會聘經理人，這正是代理問題的根源。</span></li>
+<li><span class="en"><b>Hybrids:</b> a Limited Liability Company (LLC) gives limited liability like a corporation but is taxed like a partnership.</span><span class="zh"><b>混合型</b>：有限責任公司 (LLC) 像公司一樣負有限責任，卻像合夥一樣課稅。</span></li>
+</ul>
+
+<h3>1.4 The Goal of Financial Management <span class="zh">財務管理的目標</span></h3>
+<ul class="bi">
+<li><span class="en"><b>Goal:</b> maximize the <i>current value per share</i> of the existing stock — equivalently, maximize the market value of owners' equity.</span><span class="zh"><b>目標</b>：極大化現有股票的<i>每股目前價值</i>——即極大化股東權益的市場價值。</span></li>
+<li><span class="en"><b>Why not "maximize profit"?</b> Profit is ambiguous (this year or long run? accounting or cash?), ignores the <i>timing</i> and <i>risk</i> of cash flows. Stock price captures all three.</span><span class="zh"><b>為何不是「利潤極大化」？</b>利潤定義模糊（今年或長期？會計或現金？），且忽略現金流量的<i>時點</i>與<i>風險</i>；股價則三者兼顧。</span></li>
+<li><span class="en">Shareholders are <i>residual claimants</i>: they are paid only after employees, suppliers and creditors. If equity value is rising, everyone else has been paid.</span><span class="zh">股東是<i>剩餘請求權人</i>：員工、供應商、債權人先領，股東最後。若權益價值上升，代表其他人都已獲得支付。</span></li>
+<li><span class="en"><b>Sarbanes-Oxley Act (2002)</b> strengthened protection against corporate fraud (e.g., Enron, WorldCom) by requiring management to certify financial statements.</span><span class="zh"><b>沙賓法案 (2002)</b>：因安隆、世界通訊等弊案而立法，要求管理階層對財報簽證負責，強化防弊。</span></li>
+</ul>
+
+<h3>1.5 The Agency Problem <span class="zh">代理問題</span></h3>
+<ul class="bi">
+<li><span class="en"><b>Agency relationship:</b> a principal (shareholders) hires an agent (managers) to act on its behalf. <b>Agency problem:</b> conflict of interest between them.</span><span class="zh"><b>代理關係</b>：主理人（股東）委託代理人（經理人）代為行事；<b>代理問題</b>即兩者的利益衝突。</span></li>
+<li><span class="en"><b>Main cause:</b> dispersed ownership — no single shareholder has enough stake to monitor, so management effectively controls the firm.</span><span class="zh"><b>主因</b>：股權結構分散——無單一股東有足夠誘因監督，經理人實質控制公司。</span></li>
+<li><span class="en"><b>Agency costs:</b> <i>indirect</i> = lost opportunities (e.g., managers reject a good but risky project to protect their jobs); <i>direct</i> = (1) corporate spending that benefits managers (corporate jet), (2) monitoring costs (outside auditors).</span><span class="zh"><b>代理成本</b>：<i>間接成本</i>＝錯失的機會（如經理人為保飯碗拒絕高風險但有價值的專案）；<i>直接成本</i>＝(1) 圖利經理人的支出（公務機），(2) 監督成本（外部稽核）。</span></li>
+<li><span class="en"><b>Compensation matters:</b> paying a car-selling agent a flat fee rewards a quick sale; a 10% commission aligns her with getting the best price.</span><span class="zh"><b>報酬設計很重要</b>：委託他人賣車若付固定費用，代理人只想快點賣掉；改付 10% 佣金，才會盡力賣到好價錢。</span></li>
+<li><span class="en"><b>Control mechanisms:</b> performance-based pay and stock options; promotion prospects; shareholders' power to elect the board; <i>proxy fights</i>; <i>takeover</i> threats (poorly run firms are acquisition targets).</span><span class="zh"><b>控制機制</b>：績效獎酬與員工認股權；升遷前景；股東選舉董事權；<i>委託書爭奪戰</i>；<i>接管</i>威脅（經營不善的公司易被併購）。</span></li>
+<li><span class="en"><b>Stakeholders</b> (employees, customers, suppliers, government) also have claims on the firm's cash flows.</span><span class="zh"><b>利害關係人</b>（員工、顧客、供應商、政府）對公司現金流量也有請求權。</span></li>
+</ul>
+
+<h3>1.6 Financial Markets <span class="zh">金融市場</span></h3>
+<ul class="bi">
+<li><span class="en"><b>Cash flow cycle:</b> firm sells securities → receives cash → invests in assets → assets generate cash → pays taxes, retains some, pays dividends/interest to investors.</span><span class="zh"><b>現金流循環</b>：公司發行證券 → 取得現金 → 投資資產 → 資產產生現金 → 繳稅、保留盈餘、支付股利／利息給投資人。</span></li>
+<li><span class="en"><b>Primary market:</b> the original sale of securities by the issuer (IPO, seasoned offering); the firm receives the money. <b>Secondary market:</b> investors trade among themselves; the firm receives nothing.</span><span class="zh"><b>初級市場</b>：發行公司首次出售證券（IPO、現金增資），公司取得資金。<b>次級市場</b>：投資人彼此交易，公司不收取資金。</span></li>
+<li><span class="en"><b>Public offering</b> (registered with the SEC, sold to the public) vs <b>private placement</b> (sold to a few institutions).</span><span class="zh"><b>公開發行</b>（向 SEC 註冊、賣給大眾）vs <b>私募</b>（賣給少數機構投資人）。</span></li>
+<li><span class="en"><b>Dealer market</b> (dealers buy/sell from own inventory, e.g., Nasdaq, OTC) vs <b>auction market</b> (buyers matched with sellers in one place, e.g., NYSE).</span><span class="zh"><b>自營商市場</b>（自營商以自有存貨買賣，如 Nasdaq、櫃買）vs <b>競價市場</b>（買賣雙方集中撮合，如 NYSE）。</span></li>
+<li><span class="en"><b>Money market</b> (debt maturing &lt; 1 year) vs <b>capital market</b> (long-term debt and equity).</span><span class="zh"><b>貨幣市場</b>（到期日 &lt; 1 年的債務工具）vs <b>資本市場</b>（長期債務與股票）。</span></li>
+</ul>
+</section>
+
+<!-- ============ CH 2 ============ -->
+<section class="chapter" id="ch2">
+<h2>Chapter 2 · Financial Statements, Taxes and Cash Flow<small>第 2 章 · 財務報表、稅與現金流量</small></h2>
+
+<h3>2.1 The Balance Sheet <span class="zh">資產負債表</span></h3>
+<ul class="bi">
+<li><span class="en">A <b>snapshot</b> of what the firm owns and owes at a <i>point in time</i>.</span><span class="zh">某一<i>時點</i>公司擁有與積欠的<b>快照</b>。</span></li>
+<li><span class="en"><b>Assets</b> listed in order of decreasing liquidity: current assets (cash, A/R, inventory) then fixed assets (tangible: plant & equipment; intangible: patents, trademarks).</span><span class="zh"><b>資產</b>依流動性由高到低排列：流動資產（現金、應收帳款、存貨），再到固定資產（有形：廠房設備；無形：專利、商標）。</span></li>
+<li><span class="en"><b>Liabilities</b> in order of when due: current liabilities (&lt; 1 yr: A/P, notes payable) then long-term debt.</span><span class="zh"><b>負債</b>依到期先後排列：流動負債（1 年內：應付帳款、應付票據），再到長期負債。</span></li>
+</ul>
+<div class="formula">
+<div class="name">Balance Sheet Identity <span class="zh">資產負債表恆等式</span></div>
+<div class="eq">Assets = Liabilities + Shareholders' Equity</div>
+<table class="vars">
+<tr><td>Assets</td><td>Everything the firm owns · 公司擁有的一切資源</td></tr>
+<tr><td>Liabilities</td><td>What the firm owes to creditors · 對債權人的負債</td></tr>
+<tr><td>SE</td><td>Residual owners' claim = Assets − Liabilities · 股東剩餘請求權</td></tr>
+</table>
+<div class="intu"><b>Intuition 直覺：</b>Equity is defined as the residual, so the identity always holds. If asset values fall below liabilities, equity is negative (the firm is insolvent on a book basis).<br><span class="zh">權益是「剩餘」，因此恆等式必定成立。若資產低於負債，帳面權益為負（帳面上無力償債）。</span></div>
+</div>
+<div class="formula">
+<div class="name">Net Working Capital <span class="zh">淨營運資金</span></div>
+<div class="eq">NWC = Current Assets − Current Liabilities</div>
+<table class="vars">
+<tr><td>CA</td><td>Assets convertible to cash within 1 year · 一年內可變現資產</td></tr>
+<tr><td>CL</td><td>Obligations due within 1 year · 一年內到期負債</td></tr>
+</table>
+<div class="intu"><b>Intuition 直覺：</b>Positive NWC means cash coming in over the next 12 months exceeds cash that must be paid out — a short-term liquidity cushion.<br><span class="zh">NWC 為正代表未來 12 個月可收現的金額大於需支付的金額——短期流動性的緩衝。</span></div>
+</div>
+<ul class="bi">
+<li><span class="en"><b>Liquidity:</b> how quickly and easily an asset converts to cash <i>without significant loss of value</i>. More liquidity = less likely to face financial distress, but liquid assets earn lower returns (trade-off).</span><span class="zh"><b>流動性</b>：資產能多快、多容易轉為現金<i>且不大幅折價</i>。流動性越高越不易陷入財務危機，但報酬較低（取捨）。</span></li>
+<li><span class="en"><b>Debt vs equity / financial leverage:</b> using debt magnifies both gains and losses to shareholders and increases the risk of financial distress.</span><span class="zh"><b>負債 vs 權益／財務槓桿</b>：舉債會放大股東的利得與損失，並提高財務危機風險。</span></li>
+<li><span class="en"><b>Market value vs book value:</b> book value = historical cost (GAAP); market value = what assets would sell for today. Managers and investors care about <i>market</i> value; the balance sheet often omits key assets (good management, brand, people).</span><span class="zh"><b>市價 vs 帳面價值</b>：帳面價值＝歷史成本 (GAAP)；市價＝今天能賣得的價格。經理人與投資人重視<i>市價</i>；資產負債表常漏掉重要資產（好的管理團隊、品牌、人才）。</span></li>
+</ul>
+
+<h3>2.2 The Income Statement <span class="zh">損益表</span></h3>
+<ul class="bi">
+<li><span class="en">Measures performance <i>over a period</i> (like a video, versus the balance-sheet snapshot).</span><span class="zh">衡量<i>一段期間</i>的經營績效（像錄影，相對於資產負債表的快照）。</span></li>
+</ul>
+<div class="formula">
+<div class="name">Income Statement Equation <span class="zh">損益表方程式</span></div>
+<div class="eq">Revenues − Expenses = Net Income</div>
+<div class="eq">Sales − COGS − Depreciation = EBIT;&nbsp; EBIT − Interest = EBT;&nbsp; EBT − Taxes = NI</div>
+<table class="vars">
+<tr><td>COGS</td><td>Cost of goods sold · 銷貨成本</td></tr>
+<tr><td>EBIT</td><td>Earnings before interest & taxes (operating income) · 息前稅前盈餘（營業利益）</td></tr>
+<tr><td>EBT</td><td>Earnings before taxes · 稅前盈餘</td></tr>
+<tr><td>NI</td><td>Net income = Dividends + Addition to retained earnings · 淨利＝股利＋保留盈餘增加數</td></tr>
+<tr><td>EPS</td><td>NI ÷ shares outstanding · 每股盈餘</td></tr>
+</table>
+<div class="intu"><b>Intuition 直覺：</b>EBIT shows how well the <i>operations</i> perform, before financing (interest) and government (taxes) take their shares.<br><span class="zh">EBIT 反映<i>本業</i>表現，尚未扣除融資成本（利息）與政府分配（稅）。</span></div>
+</div>
+<ul class="bi">
+<li><span class="en"><b>GAAP — Recognition (realization) principle:</b> revenue is recorded when earned (goods delivered), not necessarily when cash is collected. <b>Matching principle:</b> expenses are recorded against the revenues they produce.</span><span class="zh"><b>GAAP 認列（實現）原則</b>：收入於賺得時（商品交付）入帳，不一定是收到現金時。<b>配合原則</b>：費用與其所產生的收入在同期認列。</span></li>
+<li><span class="en"><b>Noncash items:</b> depreciation is an expense that reduces NI but involves <i>no cash outflow</i> — so NI ≠ cash flow.</span><span class="zh"><b>非現金項目</b>：折舊會減少淨利，但<i>沒有現金流出</i>——因此淨利 ≠ 現金流量。</span></li>
+<li><span class="en"><b>Time and costs:</b> in the short run some costs are fixed; in the long run all costs are variable. <i>Product costs</i> (raw materials, direct labor) go into COGS; <i>period costs</i> (SG&A) are expensed in the period.</span><span class="zh"><b>時間與成本</b>：短期部分成本固定，長期所有成本皆變動。<i>產品成本</i>（原料、直接人工）列入銷貨成本；<i>期間成本</i>（銷管費用）於當期認列。</span></li>
+</ul>
+
+<h3>2.3 Taxes <span class="zh">稅負</span> <span class="tag">TEXTBOOK</span></h3>
+<div class="formula">
+<div class="name">Average vs Marginal Tax Rate <span class="zh">平均稅率 vs 邊際稅率</span></div>
+<div class="eq">Average rate = Total tax ÷ Taxable income</div>
+<div class="eq">Marginal rate = tax paid on the next $1 earned</div>
+<div class="intu"><b>Intuition 直覺：</b>Financial decisions use the <b>marginal</b> rate because new projects generate <i>additional</i> income. Since 2018 the U.S. federal corporate rate is a flat 21%, so average = marginal for corporations.<br><span class="zh">財務決策應使用<b>邊際稅率</b>，因為新專案產生的是<i>額外</i>所得。美國自 2018 年起聯邦公司稅為單一 21%，故公司的平均稅率＝邊際稅率。</span></div>
+</div>
+
+<h3>2.4 Cash Flow <span class="zh">現金流量</span> <span class="tag">TEXTBOOK</span></h3>
+<div class="formula">
+<div class="name">Cash Flow Identity <span class="zh">現金流量恆等式</span></div>
+<div class="eq">CF(A) = OCF − NCS − ΔNWC = CF to creditors + CF to stockholders</div>
+<table class="vars">
+<tr><td>CF(A)</td><td>Cash flow from assets (free cash flow) · 資產現金流量（自由現金流量）</td></tr>
+<tr><td>OCF</td><td>Operating cash flow = EBIT + Depreciation − Taxes · 營運現金流量</td></tr>
+<tr><td>NCS</td><td>Net capital spending = Ending net FA − Beginning net FA + Depreciation · 淨資本支出</td></tr>
+<tr><td>ΔNWC</td><td>Ending NWC − Beginning NWC · 淨營運資金變動</td></tr>
+<tr><td>CF to creditors</td><td>Interest paid − Net new borrowing · 對債權人現金流量</td></tr>
+<tr><td>CF to stockholders</td><td>Dividends paid − Net new equity raised · 對股東現金流量</td></tr>
+</table>
+<div class="intu"><b>Intuition 直覺：</b>Cash the assets generate (after reinvesting in fixed assets and working capital) must equal cash paid to the firm's suppliers of capital. Negative CF(A) is not necessarily bad — a fast-growing firm invests heavily.<br><span class="zh">資產產生的現金（扣除固定資產與營運資金的再投資後）必等於支付給資金提供者的現金。CF(A) 為負不一定是壞事——高成長公司正大量投資。</span></div>
+</div>
+</section>
+
+<!-- ============ CH 4 ============ -->
+<section class="chapter" id="ch4">
+<h2>Chapter 4 · Introduction to Valuation: The Time Value of Money<small>第 4 章 · 評價導論：貨幣的時間價值</small></h2>
+
+<h3>4.1 Core Vocabulary <span class="zh">核心名詞</span></h3>
+<ul class="bi">
+<li><span class="en"><b>Time value of money (TVM):</b> a dollar today is worth more than a dollar later, because today's dollar can be invested to earn interest.</span><span class="zh"><b>貨幣時間價值</b>：今天的一元比未來的一元更有價值，因為今天的錢可以投資賺取利息。</span></li>
+<li><span class="en"><b>Compounding</b> = growing a value forward (PV → FV). <b>Discounting</b> = bringing a future value back (FV → PV).</span><span class="zh"><b>複利</b>＝把價值往未來推（PV → FV）。<b>折現</b>＝把未來價值拉回今天（FV → PV）。</span></li>
+<li><span class="en"><b>Simple interest</b> is earned only on the original principal. <b>Compound interest</b> also earns <i>interest on interest</i>.</span><span class="zh"><b>單利</b>只對原始本金計息。<b>複利</b>還會產生<i>利上加利</i>。</span></li>
+</ul>
+
+<h3>4.2 Future Value <span class="zh">終值</span></h3>
+<div class="formula">
+<div class="name">Future Value (single sum) <span class="zh">單筆終值</span></div>
+<div class="eq">FV = PV × (1 + r)<sup>t</sup></div>
+<table class="vars">
+<tr><td>FV</td><td>Future value at time t · 第 t 期的終值</td></tr>
+<tr><td>PV</td><td>Present value (amount invested today) · 現值（今天投入金額）</td></tr>
+<tr><td>r</td><td>Interest rate per period · 每期利率</td></tr>
+<tr><td>t</td><td>Number of periods · 期數</td></tr>
+<tr><td>(1+r)<sup>t</sup></td><td>Future value interest factor (FVIF) · 終值利率因子</td></tr>
+</table>
+<div class="intu"><b>Intuition 直覺：</b>Each period the balance is multiplied by (1+r); growth is exponential, so long horizons and high rates have dramatic effects.<br><span class="zh">每期餘額乘上 (1+r)，呈指數成長；期間越長、利率越高，效果越驚人。</span></div>
+</div>
+<div class="ex"><div class="h">Worked Example 範例</div>
+<span class="en">Invest $100 at 10% for 5 years. FV = 100 × 1.1<sup>5</sup> = 100 × 1.61051 = <b>$161.05</b>. Simple interest would give 100 + 5 × 10 = $150, so interest-on-interest = <b>$11.05</b>.</span>
+<span class="zh">投資 $100，年利率 10%，5 年。FV = 100 × 1.1<sup>5</sup> = <b>$161.05</b>。單利僅得 100 + 5×10 = $150，故利上加利 = <b>$11.05</b>。</span></div>
+
+<h3>4.3 Present Value <span class="zh">現值</span></h3>
+<div class="formula">
+<div class="name">Present Value (single sum) <span class="zh">單筆現值</span></div>
+<div class="eq">PV = FV ÷ (1 + r)<sup>t</sup> = FV × [1 / (1 + r)<sup>t</sup>]</div>
+<table class="vars">
+<tr><td>r</td><td>Discount rate · 折現率</td></tr>
+<tr><td>1/(1+r)<sup>t</sup></td><td>Discount factor (PVIF) · 折現因子</td></tr>
+</table>
+<div class="intu"><b>Intuition 直覺：</b>PV answers "how much must I invest today to have FV later?" PV falls as r rises or t lengthens — the inverse relationship between rate and value underlies bond pricing.<br><span class="zh">PV 回答「今天要投入多少，未來才能得到 FV？」利率越高或期間越長，PV 越低——這種反向關係正是債券評價的基礎。</span></div>
+</div>
+<div class="ex"><div class="h">Worked Example 範例（課堂）</div>
+<span class="en">How much to invest today at 10% to get $1 in one year? PV × 1.1 = $1 → PV = 1/1.1 = <b>$0.909</b>.</span>
+<span class="zh">年利率 10%，一年後要拿到 $1，今天需投入多少？PV × 1.1 = $1 → PV = <b>$0.909</b>。</span></div>
+
+<h3>4.4 Solving for the Rate and the Number of Periods <span class="zh">求解利率與期數</span></h3>
+<div class="formula">
+<div class="name">Discount Rate <span class="zh">求報酬率</span></div>
+<div class="eq">r = (FV / PV)<sup>1/t</sup> − 1</div>
+<div class="intu"><b>Intuition 直覺：</b>The compound annual growth rate that turns PV into FV in t periods.<br><span class="zh">讓 PV 在 t 期後成長為 FV 的年複合成長率。</span></div>
+</div>
+<div class="formula">
+<div class="name">Number of Periods <span class="zh">求期數</span></div>
+<div class="eq">t = ln(FV / PV) ÷ ln(1 + r)</div>
+<div class="intu"><b>Rule of 72 (72 法則):</b> years to double ≈ 72 ÷ (r × 100). At 8%, money doubles in about 9 years.<br><span class="zh">資金翻倍所需年數 ≈ 72 ÷ 利率(%)。年利 8% 約 9 年翻倍。</span></div>
+</div>
+<div class="ex"><div class="h">Worked Example 範例</div>
+<span class="en">$5,000 grows to $10,000 in 6 years → r = 2<sup>1/6</sup> − 1 = <b>12.25%</b>. At 10%, how long to turn $5,000 into $10,000? t = ln 2 / ln 1.1 = <b>7.27 years</b>.</span>
+<span class="zh">$5,000 在 6 年後成長為 $10,000 → r = 2<sup>1/6</sup> − 1 = <b>12.25%</b>。利率 10% 時，$5,000 變 $10,000 需 t = ln2/ln1.1 = <b>7.27 年</b>。</span></div>
+
+<h3>4.5 Using the Financial Calculator <span class="zh">財務計算機操作</span></h3>
+<ul class="bi">
+<li><span class="en">Five TVM keys: <b>N</b> (periods), <b>I/Y</b> (rate in %, not decimal), <b>PV</b>, <b>PMT</b> (level payment), <b>FV</b>. Enter any four, compute (CPT) the fifth.</span><span class="zh">五個 TVM 鍵：<b>N</b>（期數）、<b>I/Y</b>（利率，輸入百分比而非小數）、<b>PV</b>、<b>PMT</b>（每期等額付款）、<b>FV</b>。輸入任四個，按 CPT 求第五個。</span></li>
+<li><span class="en"><b>Sign convention:</b> cash outflows are negative, inflows positive. When solving for r or t, PV and FV must have opposite signs or the calculator returns an error.</span><span class="zh"><b>正負號慣例</b>：現金流出為負、流入為正。求 r 或 t 時，PV 與 FV 必須一正一負，否則計算機會顯示錯誤。</span></li>
+<li><span class="en">Always clear the TVM registers (2nd → CLR TVM) and check P/Y = 1 before a new problem.</span><span class="zh">每題前先清除 TVM 暫存（2nd → CLR TVM），並確認 P/Y = 1。</span></li>
+</ul>
+</section>
+
+<!-- ============ CH 5 ============ -->
+<section class="chapter" id="ch5">
+<h2>Chapter 5 · Discounted Cash Flow Valuation<small>第 5 章 · 現金流量折現評價</small></h2>
+
+<h3>5.1 Multiple Cash Flows <span class="zh">多筆現金流量</span></h3>
+<div class="formula">
+<div class="name">PV and FV of Uneven Cash Flows <span class="zh">不等額現金流量的現值與終值</span></div>
+<div class="eq">PV = Σ C<sub>t</sub> / (1 + r)<sup>t</sup>&nbsp;&nbsp;&nbsp; FV<sub>T</sub> = Σ C<sub>t</sub> × (1 + r)<sup>T − t</sup></div>
+<table class="vars">
+<tr><td>C<sub>t</sub></td><td>Cash flow at end of period t · 第 t 期末現金流量</td></tr>
+<tr><td>T</td><td>Horizon date for FV · 終值的目標時點</td></tr>
+</table>
+<div class="intu"><b>Intuition 直覺：</b>Value is additive. Move every cash flow to the same date, then add. Two methods for FV: compound the running balance forward year by year, or compound each cash flow separately and sum.<br><span class="zh">價值具可加性：把每筆現金流移到同一時點再相加。求終值可逐年累積餘額，或各筆分別複利後加總。</span></div>
+</div>
+<div class="ex"><div class="h">Worked Example 範例</div>
+<span class="en">Receive $200 in year 1 and $400 in year 2; r = 12%. PV = 200/1.12 + 400/1.12<sup>2</sup> = 178.57 + 318.88 = <b>$497.45</b>.</span>
+<span class="zh">第 1 年收 $200、第 2 年收 $400，r = 12%。PV = 178.57 + 318.88 = <b>$497.45</b>。</span></div>
+<ul class="bi">
+<li><span class="en"><b>Timing assumption:</b> unless stated, cash flows occur at the <i>end</i> of each period.</span><span class="zh"><b>時點假設</b>：除非特別說明，現金流量皆發生在每期<i>期末</i>。</span></li>
+</ul>
+
+<h3>5.2 Annuities and Perpetuities <span class="zh">年金與永續年金</span></h3>
+<div class="formula">
+<div class="name">Present Value of an Ordinary Annuity <span class="zh">普通年金現值</span></div>
+<div class="eq">PV = C × [1 − 1/(1 + r)<sup>t</sup>] / r</div>
+<table class="vars">
+<tr><td>C</td><td>Level payment each period (end of period) · 每期期末等額支付</td></tr>
+<tr><td>r</td><td>Rate per period · 每期利率</td></tr>
+<tr><td>t</td><td>Number of payments · 支付次數</td></tr>
+<tr><td>[ ]/r</td><td>Annuity PV factor · 年金現值因子</td></tr>
+</table>
+<div class="intu"><b>Intuition 直覺：</b>An annuity = a perpetuity starting now (C/r) minus a perpetuity starting at t (its PV is (C/r)/(1+r)<sup>t</sup>). That is exactly the formula.<br><span class="zh">年金 = 從現在開始的永續年金 (C/r) 減去從第 t 期才開始的永續年金（其現值為 (C/r)/(1+r)<sup>t</sup>），即得此公式。</span></div>
+</div>
+<div class="formula">
+<div class="name">Future Value of an Ordinary Annuity <span class="zh">普通年金終值</span></div>
+<div class="eq">FV = C × [(1 + r)<sup>t</sup> − 1] / r</div>
+<div class="intu"><b>Intuition 直覺：</b>Equals PV of the annuity × (1+r)<sup>t</sup>. Used for retirement savings: how much will regular deposits grow to?<br><span class="zh">等於年金現值 × (1+r)<sup>t</sup>。常用於退休儲蓄：定期存款最後會累積多少？</span></div>
+</div>
+<div class="formula">
+<div class="name">Annuity Due <span class="zh">期初年金</span></div>
+<div class="eq">PV<sub>due</sub> = PV<sub>ordinary</sub> × (1 + r)&nbsp;&nbsp;&nbsp; FV<sub>due</sub> = FV<sub>ordinary</sub> × (1 + r)</div>
+<div class="intu"><b>Intuition 直覺：</b>Payments come at the <i>beginning</i> of each period (rent, leases), so each payment is one period earlier → worth (1+r) times more. Calculator: set BGN mode.<br><span class="zh">支付在每期<i>期初</i>（如房租、租賃），每筆都早一期，價值多乘 (1+r)。計算機設定 BGN 模式。</span></div>
+</div>
+<div class="formula">
+<div class="name">Perpetuity <span class="zh">永續年金</span></div>
+<div class="eq">PV = C / r</div>
+<table class="vars">
+<tr><td>C</td><td>Level payment forever, first at end of period 1 · 永久等額支付，第 1 期末開始</td></tr>
+</table>
+<div class="intu"><b>Intuition 直覺：</b>If you deposit C/r at rate r, interest each year is exactly C and the principal is never touched. Example: preferred stock (consol). $1 per year forever at 8% → PV = $12.50.<br><span class="zh">若存入 C/r、利率 r，每年利息恰為 C 且本金永不動用。例：特別股（永續債）。每年 $1、利率 8% → PV = $12.50。</span></div>
+</div>
+<div class="formula">
+<div class="name">Growing Perpetuity and Growing Annuity <span class="zh">成長型永續年金與成長年金</span></div>
+<div class="eq">Growing perpetuity: PV = C<sub>1</sub> / (r − g),&nbsp; r &gt; g</div>
+<div class="eq">Growing annuity: PV = C<sub>1</sub> / (r − g) × [1 − ((1 + g)/(1 + r))<sup>t</sup>]</div>
+<table class="vars">
+<tr><td>C<sub>1</sub></td><td>First cash flow, at end of period 1 · 第 1 期現金流量</td></tr>
+<tr><td>g</td><td>Constant growth rate of cash flows · 現金流量固定成長率</td></tr>
+</table>
+<div class="intu"><b>Intuition 直覺：</b>Growth makes later payments larger, raising value; the formula requires r &gt; g or value is infinite. This is the basis of the dividend growth model for stocks (Ch 7).<br><span class="zh">成長使後期支付變大、價值提高；必須 r &gt; g，否則價值無限大。此為股票股利成長模型（第 7 章）的基礎。</span></div>
+</div>
+
+<h3>5.3 Solving for Payment, Rate and Periods <span class="zh">求解付款額、利率與期數</span></h3>
+<div class="formula">
+<div class="name">Annuity Payment (loan payment) <span class="zh">年金每期付款（貸款攤還額）</span></div>
+<div class="eq">C = PV × r / [1 − 1/(1 + r)<sup>t</sup>]</div>
+<div class="intu"><b>Intuition 直覺：</b>Rearranging the annuity PV formula: the level payment that exactly pays off a loan of PV over t periods.<br><span class="zh">由年金現值公式移項：在 t 期內剛好還清 PV 貸款的每期等額付款。</span></div>
+</div>
+<ul class="bi">
+<li><span class="en"><b>Finding r</b> for an annuity has no closed-form solution: use trial and error or the calculator (N, PV, PMT → CPT I/Y).</span><span class="zh">年金<b>求 r</b> 沒有公式解：需試誤法或計算機（輸入 N、PV、PMT → CPT I/Y）。</span></li>
+<li><span class="en"><b>Finding t:</b> how long to pay off a credit card balance with fixed payments — use the calculator (I/Y, PV, PMT → CPT N).</span><span class="zh"><b>求 t</b>：固定還款多久能還清卡債——用計算機（I/Y、PV、PMT → CPT N）。</span></li>
+</ul>
+
+<h3>5.4 Comparing Rates: APR vs EAR <span class="zh">利率比較：名目年利率 vs 有效年利率</span></h3>
+<div class="formula">
+<div class="name">Effective Annual Rate <span class="zh">有效年利率</span></div>
+<div class="eq">EAR = (1 + APR/m)<sup>m</sup> − 1</div>
+<table class="vars">
+<tr><td>APR</td><td>Annual percentage rate = quoted (stated) rate = rate per period × m · 名目（報價）年利率</td></tr>
+<tr><td>m</td><td>Compounding periods per year · 每年複利次數</td></tr>
+<tr><td>EAR</td><td>Rate actually earned/paid after compounding · 考慮複利後實際的年利率</td></tr>
+</table>
+<div class="intu"><b>Intuition 直覺：</b>Quoted rates are not comparable when compounding differs. Convert everything to EAR, then pick the highest for investing or lowest for borrowing. EAR ≥ APR; more frequent compounding → higher EAR.<br><span class="zh">複利次數不同時報價利率無法直接比較；全部換算成 EAR 後，投資選最高、借款選最低。EAR ≥ APR，複利越頻繁 EAR 越高。</span></div>
+</div>
+<div class="formula">
+<div class="name">Converting EAR to APR and Continuous Compounding <span class="zh">EAR 換算 APR 與連續複利</span></div>
+<div class="eq">APR = m × [(1 + EAR)<sup>1/m</sup> − 1]&nbsp;&nbsp;&nbsp; EAR<sub>continuous</sub> = e<sup>APR</sup> − 1</div>
+<div class="intu"><b>Intuition 直覺：</b>Continuous compounding is the upper limit as m → ∞.<br><span class="zh">連續複利是 m → ∞ 的上限。</span></div>
+</div>
+<div class="ex"><div class="h">Worked Example 範例</div>
+<span class="en">Bank A: 15.0% compounded daily; Bank B: 15.5% compounded quarterly; Bank C: 16% annually. EAR<sub>A</sub> = (1+.15/365)<sup>365</sup>−1 = <b>16.18%</b>; EAR<sub>B</sub> = (1+.155/4)<sup>4</sup>−1 = <b>16.42%</b>; EAR<sub>C</sub> = <b>16.00%</b>. As a saver, choose B; as a borrower, choose C.</span>
+<span class="zh">A 銀行 15% 日複利；B 銀行 15.5% 季複利；C 銀行 16% 年複利。EAR 分別為 16.18%、16.42%、16.00%。存款選 B，借款選 C。</span></div>
+<ul class="bi">
+<li><span class="en"><b>Truth-in-Lending laws</b> require lenders to disclose the APR — but APR understates true cost when compounding is more than annual.</span><span class="zh"><b>誠實借貸法</b>要求揭露 APR——但當複利多於一年一次時，APR 會低估真實成本。</span></li>
+</ul>
+
+<h3>5.5 Loan Types and Amortization <span class="zh">貸款類型與攤還</span></h3>
+<ul class="bi">
+<li><span class="en"><b>Pure discount loan:</b> borrower receives money today and repays one lump sum later (e.g., T-bills). PV = F/(1+r)<sup>t</sup>.</span><span class="zh"><b>純折價貸款</b>：今天借款，到期一次還清本息（如國庫券）。PV = F/(1+r)<sup>t</sup>。</span></li>
+<li><span class="en"><b>Interest-only loan:</b> pay interest each period, repay entire principal at maturity (like most corporate bonds).</span><span class="zh"><b>只付息貸款</b>：每期只付利息，到期一次還本（類似多數公司債）。</span></li>
+<li><span class="en"><b>Amortized loan — fixed principal:</b> repay the same principal each period; interest falls over time, so total payment declines.</span><span class="zh"><b>攤還貸款—本金平均攤還</b>：每期償還相同本金；利息逐期減少，總付款遞減。</span></li>
+<li><span class="en"><b>Amortized loan — fixed payment:</b> equal total payment (annuity), most common (mortgages, car loans). Early payments are mostly interest; later ones mostly principal.</span><span class="zh"><b>攤還貸款—本息平均攤還</b>：每期總付款相同（年金），最常見（房貸、車貸）。前期多為利息，後期多為本金。</span></li>
+</ul>
+<div class="ex"><div class="h">Worked Example 範例（課堂）: $5,000, 9%, 5 years</div>
+<span class="en"><b>Fixed principal:</b> repay $1,000/yr. Interest = 450, 360, 270, 180, 90 → total interest <b>$1,350</b>.<br>
+<b>Fixed payment:</b> C = 5,000 × 0.09 / [1 − 1/1.09<sup>5</sup>] = 450 / 0.35007 = <b>$1,285.46</b>. Total paid = 5 × 1,285.46 = 6,427.31 → total interest <b>$1,427.31</b>.<br>
+The fixed-payment loan costs more interest only because principal is repaid more slowly early on — neither loan is "better"; one is simply paid off faster.</span>
+<span class="zh"><b>本金平均攤還</b>：每年還本 $1,000，利息依序 450、360、270、180、90，總利息 <b>$1,350</b>。<br>
+<b>本息平均攤還</b>：C = <b>$1,285.46</b>，總付款 $6,427.31，總利息 <b>$1,427.31</b>。<br>
+後者利息較高只是因為前期還本較慢——兩者無優劣之分，只是前者較快還清。</span></div>
+<table class="cmp">
+<tr><th>Year 年</th><th>Beg. balance 期初餘額</th><th>Payment 付款</th><th>Interest 利息</th><th>Principal 本金</th><th>End balance 期末餘額</th></tr>
+<tr><td>1</td><td>5,000.00</td><td>1,285.46</td><td>450.00</td><td>835.46</td><td>4,164.54</td></tr>
+<tr><td>2</td><td>4,164.54</td><td>1,285.46</td><td>374.81</td><td>910.65</td><td>3,253.89</td></tr>
+<tr><td>3</td><td>3,253.89</td><td>1,285.46</td><td>292.85</td><td>992.61</td><td>2,261.28</td></tr>
+<tr><td>4</td><td>2,261.28</td><td>1,285.46</td><td>203.52</td><td>1,081.94</td><td>1,179.34</td></tr>
+<tr><td>5</td><td>1,179.34</td><td>1,285.46</td><td>106.14</td><td>1,179.32*</td><td>0.00</td></tr>
+</table>
+<p style="font-size:.82rem;color:var(--muted)">*Rounding difference of $0.02 · 四捨五入差異 $0.02</p>
+</section>
+
+<!-- ============ CHEAT SHEET ============ -->
+<section class="chapter" id="cheat">
+<h2>Formula Sheet — Batch 1<small>公式總表 — 第一批</small></h2>
+<table class="cmp">
+<tr><th>Concept 觀念</th><th>Formula 公式</th></tr>
+<tr><td>Balance sheet identity 資產負債表恆等式</td><td>A = L + SE</td></tr>
+<tr><td>Net working capital 淨營運資金</td><td>NWC = CA − CL</td></tr>
+<tr><td>Net income 淨利</td><td>NI = Revenue − Expenses = Dividends + ΔRetained earnings</td></tr>
+<tr><td>Operating cash flow 營運現金流量</td><td>OCF = EBIT + Dep − Taxes</td></tr>
+<tr><td>Cash flow identity 現金流量恆等式</td><td>OCF − NCS − ΔNWC = CF to creditors + CF to stockholders</td></tr>
+<tr><td>Future value 終值</td><td>FV = PV(1+r)<sup>t</sup></td></tr>
+<tr><td>Present value 現值</td><td>PV = FV/(1+r)<sup>t</sup></td></tr>
+<tr><td>Implied rate 隱含報酬率</td><td>r = (FV/PV)<sup>1/t</sup> − 1</td></tr>
+<tr><td>Number of periods 期數</td><td>t = ln(FV/PV)/ln(1+r)</td></tr>
+<tr><td>Annuity PV 年金現值</td><td>C[1 − 1/(1+r)<sup>t</sup>]/r</td></tr>
+<tr><td>Annuity FV 年金終值</td><td>C[(1+r)<sup>t</sup> − 1]/r</td></tr>
+<tr><td>Annuity due 期初年金</td><td>Ordinary × (1+r)</td></tr>
+<tr><td>Perpetuity 永續年金</td><td>C/r</td></tr>
+<tr><td>Growing perpetuity 成長永續年金</td><td>C<sub>1</sub>/(r − g)</td></tr>
+<tr><td>Loan payment 貸款付款</td><td>C = PV·r/[1 − 1/(1+r)<sup>t</sup>]</td></tr>
+<tr><td>EAR 有效年利率</td><td>(1 + APR/m)<sup>m</sup> − 1</td></tr>
+<tr><td>APR from EAR</td><td>m[(1+EAR)<sup>1/m</sup> − 1]</td></tr>
+<tr><td>Continuous compounding 連續複利</td><td>e<sup>APR</sup> − 1</td></tr>
+</table>
+</section>
+</div>
+
+<!-- ================= PART 2 ================= -->
+<div class="view" id="v-part2">
+<div class="empty">
+<h2>Case Studies · 個案分析</h2>
+<p><span class="en">No case study files have been uploaded to this project yet. Once you add them, each case will be summarized here: the core financial dilemma, the methods applied (DCF, ratio analysis, sensitivity analysis), and strategic takeaways.</span>
+<span class="zh">本專案尚未上傳任何個案檔案。上傳後，此處將為每個個案整理：核心財務困境、所用分析方法（DCF、比率分析、敏感度分析）與策略啟示。</span></p>
+</div>
+</div>
+
+<!-- ================= PART 3 ================= -->
+<div class="view" id="v-part3">
+<div class="empty">
+<h2>Practice Quiz Bank · 練習題庫</h2>
+<p><span class="en">Coming in a later batch: 35 multiple-choice + 35 true/false questions, plus case-based questions, each with bilingual answers and step-by-step explanations.</span>
+<span class="zh">後續批次加入：35 題選擇題 + 35 題是非題，以及個案題，每題均附中英對照答案與逐步解析。</span></p>
+</div>
+</div>
+
+</main>
+<a class="toTop" href="#part1" id="toTop" aria-label="Back to top">↑</a>
+<script>
+(function(){
+  var views=["part1","part2","part3"];
+  function show(v){
+    if(views.indexOf(v)<0)v="part1";
+    views.forEach(function(x){
+      document.getElementById("v-"+x).classList.toggle("on",x===v);
+    });
+    document.querySelectorAll("#tabs a").forEach(function(a){a.classList.toggle("on",a.dataset.v===v)});
+  }
+  function fromHash(){show((location.hash||"#part1").slice(1));}
+  window.addEventListener("hashchange",fromHash);
+  fromHash();
+  document.querySelectorAll("[data-jump]").forEach(function(a){
+    a.addEventListener("click",function(e){
+      e.preventDefault();
+      var el=document.getElementById(a.dataset.jump);
+      if(el)el.scrollIntoView({behavior:"smooth",block:"start"});
+    });
+  });
+  document.getElementById("toTop").addEventListener("click",function(e){
+    e.preventDefault();window.scrollTo({top:0,behavior:"smooth"});
+  });
+})();
+</script>
+</body>
+</html>
