@@ -61,18 +61,26 @@ table.cmp th{background:var(--accent-soft);color:var(--accent)}
 .empty{text-align:center;padding:40px 16px;color:var(--muted)}
 .empty h2{font-family:"Source Serif 4",serif;color:var(--accent)}
 .toTop{position:fixed;right:16px;bottom:18px;background:var(--accent);color:#fff;border-radius:999px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:1.2rem;box-shadow:0 2px 8px rgba(0,0,0,.2)}
-.q{border-top:1px solid var(--line);padding:16px 0 6px}
+.q{border-top:1px solid var(--line);padding:16px 0 8px}
 .q:first-of-type{border-top:none}
 .qn{display:inline-block;font-weight:700;font-size:.8rem;color:#fff;background:var(--accent);border-radius:6px;padding:1px 8px;margin-bottom:6px}
-.stem{font-weight:500;margin-bottom:6px}
-ol.opts{list-style:none;padding:0;margin:6px 0 10px}
-ol.opts li{position:relative;padding:6px 8px 6px 34px;border:1px solid var(--line);border-radius:8px;margin:6px 0;font-size:.94rem}
-ol.opts li::before{content:attr(data-l);position:absolute;left:10px;top:6px;font-weight:700;color:var(--accent)}
-details{margin:4px 0 6px}
-summary{cursor:pointer;color:var(--accent);font-weight:500;font-size:.92rem;padding:4px 0}
-.ans{margin:8px 0 4px;color:var(--ok)}
+.stem{font-weight:500;margin-bottom:8px}
+.opts{display:flex;flex-direction:column;gap:8px;margin:6px 0 10px}
+.opt{display:flex;gap:10px;align-items:flex-start;text-align:left;width:100%;font:inherit;font-size:.95rem;color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt:disabled{cursor:default}
+.ol{flex:0 0 auto;font-weight:700;color:var(--accent);min-width:1.1em}
+.opt.right{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 14%,var(--paper))}
+.opt.wrong{border-color:#c0392b;background:color-mix(in srgb,#c0392b 12%,var(--paper))}
+.opt.right .ol{color:var(--ok)}.opt.wrong .ol{color:#c0392b}
+.verdict{font-weight:700;margin:4px 0}
+.verdict.ok{color:var(--ok)}.verdict.no{color:#c0392b}
+.ans{margin:2px 0 8px}
 .expl{font-size:.93rem;background:var(--accent-soft);border-radius:8px;padding:10px 12px}
+.expl .en{margin-bottom:6px}
 .warn{font-size:.88rem;margin-top:8px;padding:10px 12px;border-radius:8px;background:var(--gold-soft);color:var(--ink)}
+.scorebar{position:sticky;top:52px;z-index:15;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:0 0 14px;font-size:.92rem}
+.scorebar button{font:inherit;font-size:.85rem;border:1px solid var(--accent);color:var(--accent);background:transparent;border-radius:8px;padding:5px 10px;cursor:pointer}
 </style>
 </head>
 <body>
@@ -638,354 +646,355 @@ The 10% is the <b>opportunity cost</b>.</span>
 
 <!-- ================= PART 2 ================= -->
 <div class="view" id="v-part2">
-<div class="note"><span class="tag">HOW TO USE</span><span class="en">These are the teacher's 6 in-class exercises (37 questions). The PDFs contain no answer key, so the answers below were worked out from the slides and every calculation was checked. Tap “Show answer” to reveal each solution.</span><span class="zh">以下為老師的 6 份課堂練習（共 37 題）。原檔沒有附答案，以下答案依投影片推導，計算皆已驗算。點「顯示答案」查看解析。</span></div>
+<div class="note"><span class="tag">HOW TO USE</span><span class="en">The teacher's 6 in-class exercises (37 questions). Tap an option to answer: you will see whether it is right, the correct answer, and the explanation. The original PDFs have no answer key; answers were worked out from the slides and all calculations were checked.</span><span class="zh">老師的 6 份課堂練習（共 37 題）。點選項作答後，會顯示對錯、正解與中英解析。原檔沒有附答案，答案依投影片推導，計算皆已驗算。</span></div>
+<div class="scorebar" id="scorebar"><span>Score 得分：<b id="sc-right">0</b> / <b id="sc-done">0</b> answered 已作答 · total 37 題</span><button type="button" id="sc-reset">Reset 重新作答</button></div>
 <div class="chapnav"><a href="#part2" data-jump="ex1">Exercise 1</a><a href="#part2" data-jump="ex2">Exercise 2</a><a href="#part2" data-jump="ex3">Exercise 3</a><a href="#part2" data-jump="ex4">Exercise 4</a><a href="#part2" data-jump="ex5">Exercise 5</a><a href="#part2" data-jump="ex6">Exercise 6</a></div>
 <section class="chapter" id="ex1"><h2>Exercise 1<small>Ch 1 · Overview of Finance 財務導論</small></h2>
-<div class="q">
-<div class="qn">Q1</div><div class="stem"><span class="en">Which of the following relationships is <b>not</b> correct?</span><span class="zh">下列哪一個對應關係<b>不正確</b>？</span></div><ol class="opts">
-<li data-l="A"><span class="en">The question what long-term investments the firm should take on is related to capital structure.</span><span class="zh">「公司應做哪些長期投資」與資本結構有關。</span></li>
-<li data-l="B"><span class="en">Borrowing the money or bringing other owners is related to capital structure.</span><span class="zh">「借錢或引進其他股東」與資本結構有關。</span></li>
-<li data-l="C"><span class="en">How to collect from customers is related to working capital management.</span><span class="zh">「如何向客戶收款」與營運資金管理有關。</span></li>
-<li data-l="D"><span class="en">What the least expensive sources of funds for the firm are is related to working capital structure.</span><span class="zh">「公司最便宜的資金來源」與營運資金結構有關。</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>A</b></div><div class="expl"><span class="en">Which long-term investments to take on is <b>capital budgeting</b>, not capital structure. B and C match the slides.</span><span class="zh">「該做哪些長期投資」屬於<b>資本預算</b>，不是資本結構。B、C 與投影片一致。</span></div>
+<div class="q" data-ans="0">
+<div class="qn">Q1</div><div class="stem">Which of the following relationships is <b>not</b> correct?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">The question what long-term investments the firm should take on is related to capital structure.</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">Borrowing the money or bringing other owners is related to capital structure.</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">How to collect from customers is related to working capital management.</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">What the least expensive sources of funds for the firm are is related to working capital structure.</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>A</b></div><div class="expl"><span class="en">Which long-term investments to take on is <b>capital budgeting</b>, not capital structure. B and C match the slides.</span><span class="zh">「該做哪些長期投資」屬於<b>資本預算</b>，不是資本結構。B、C 與投影片一致。</span></div>
 <div class="warn">⚠ Option D is also inconsistent with the slides: the least expensive sources of funds is a <b>capital structure</b> question, and "working capital structure" is not a term used in the slides. A is the clearest wrong statement; ask your teacher if D was also meant to be wrong. 選項 D 也與投影片不符：「最便宜的資金來源」屬於<b>資本結構</b>，投影片中也沒有「營運資金結構」這個詞。A 是最明確的錯誤選項，D 是否也算錯建議向老師確認。</div>
-</details></div>
-<div class="q">
-<div class="qn">Q2</div><div class="stem"><span class="en">Which of the following is <b>not</b> the essence of capital budgeting?</span><span class="zh">下列何者<b>不是</b>資本預算的核心？</span></div><ol class="opts">
-<li data-l="A"><span class="en">Size of future cash flows</span><span class="zh">未來現金流量的大小</span></li>
-<li data-l="B"><span class="en">Timing of future cash flows</span><span class="zh">未來現金流量的時點</span></li>
-<li data-l="C"><span class="en">How to raise capital</span><span class="zh">如何籌措資金</span></li>
-<li data-l="D"><span class="en">Risk of future cash flows</span><span class="zh">未來現金流量的風險</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>C</b></div><div class="expl"><span class="en">The essence of capital budgeting is the size, timing and risk of future cash flows. How to raise capital is a capital structure decision.</span><span class="zh">資本預算的核心是未來現金流量的大小、時點與風險。如何籌資屬於資本結構決策。</span></div>
-</details></div>
-<div class="q">
-<div class="qn">Q3</div><div class="stem"><span class="en">Which Fintech innovation finances customers' purchases?</span><span class="zh">哪一種金融科技創新是為消費者的購物提供融資？</span></div><ol class="opts">
-<li data-l="A"><span class="en">Buy now, pay later</span><span class="zh">先買後付</span></li>
-<li data-l="B"><span class="en">P2P lending</span><span class="zh">P2P 借貸</span></li>
-<li data-l="C"><span class="en">Crowdfunding</span><span class="zh">群眾募資</span></li>
-<li data-l="D"><span class="en">Mobile payment</span><span class="zh">行動支付</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>A</b></div><div class="expl"><span class="en">BNPL firms (e.g., Affirm) work with retailers to fund customers' purchases, repaid in installments.</span><span class="zh">先買後付業者（如 Affirm）與零售商合作，為顧客的購物提供融資，顧客再分期償還。</span></div>
-</details></div>
-<div class="q">
-<div class="qn">Q4</div><div class="stem"><span class="en">Which form of business organization is least regulated?</span><span class="zh">哪一種企業組織型態受法規規範最少？</span></div><ol class="opts">
-<li data-l="A"><span class="en">Sole proprietorship</span><span class="zh">獨資</span></li>
-<li data-l="B"><span class="en">Partnership</span><span class="zh">合夥</span></li>
-<li data-l="C"><span class="en">Corporation</span><span class="zh">公司</span></li>
-<li data-l="D"><span class="en">Limited Liability Company</span><span class="zh">有限責任公司</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>A</b></div><div class="expl"><span class="en">A sole proprietorship is the simplest business to start and the least regulated form.</span><span class="zh">獨資是最容易設立、法令規範最少的組織型態。</span></div>
-</details></div>
-<div class="q">
-<div class="qn">Q5</div><div class="stem"><span class="en">What is the main cause of the agency problem?</span><span class="zh">代理問題的主要原因是什麼？</span></div><ol class="opts">
-<li data-l="A"><span class="en">The dispersion of ownership for a corporation</span><span class="zh">公司股權結構分散</span></li>
-<li data-l="B"><span class="en">The shareholders in a corporation have limited liability for debts</span><span class="zh">股東對公司債務負有限責任</span></li>
-<li data-l="C"><span class="en">The financial manager attempts to maximize the market value of the existing stock</span><span class="zh">財務經理試圖極大化現有股票的市值</span></li>
-<li data-l="D"><span class="en">The ownership of a corporation can be readily transferred</span><span class="zh">公司所有權容易移轉</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>A</b></div><div class="expl"><span class="en">With ownership spread over many stockholders, management may effectively control the firm and pursue its own goals.</span><span class="zh">股權分散在眾多股東手中，管理階層實質控制公司，可能追求自身目標。</span></div>
-</details></div>
-<div class="q">
-<div class="qn">Q6</div><div class="stem"><span class="en">Why is the ability of sole proprietorships and partnerships to grow limited?</span><span class="zh">為什麼獨資與合夥的成長能力有限？</span></div><ol class="opts">
-<li data-l="A"><span class="en">The owners have unlimited liabilities</span><span class="zh">所有人負無限責任</span></li>
-<li data-l="B"><span class="en">The ownership can be transferred</span><span class="zh">所有權可以移轉</span></li>
-<li data-l="C"><span class="en">The stockholders can elect the board of directors</span><span class="zh">股東可以選舉董事會</span></li>
-<li data-l="D"><span class="en">The managers control the corporation</span><span class="zh">經理人控制公司</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>A</b></div><div class="expl"><span class="en">Unlimited liability, limited life and difficult ownership transfer limit their ability to raise cash, and so to grow. Only A is one of these.</span><span class="zh">無限責任、存續有限、所有權移轉困難使其籌資受限，成長也受限。只有 A 屬於這些原因。</span></div>
-</details></div>
-<div class="q">
-<div class="qn">Q7</div><div class="stem"><span class="en">Which statement about a corporation is correct?</span><span class="zh">關於公司的敘述，何者正確？</span></div><ol class="opts">
-<li data-l="A"><span class="en">The life of the corporation is limited</span><span class="zh">公司的存續期間有限</span></li>
-<li data-l="B"><span class="en">A corporation cannot be taken over</span><span class="zh">公司不可能被接管</span></li>
-<li data-l="C"><span class="en">The corporate form is superior when it comes to raising cash</span><span class="zh">公司型態在籌資上較優越</span></li>
-<li data-l="D"><span class="en">A corporation is not a legal person</span><span class="zh">公司不是法人</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>C</b></div><div class="expl"><span class="en">Easy transfer of shares, unlimited life and limited liability make the corporation superior for raising cash. A, B and D are all false.</span><span class="zh">股份易移轉、永續經營、有限責任使公司最容易籌資。A、B、D 皆錯誤。</span></div>
-</details></div>
-<div class="q">
-<div class="qn">Q8</div><div class="stem"><span class="en">Which of the following is <b>not</b> one of the basic areas of finance?</span><span class="zh">下列何者<b>不是</b>財務的基本領域？</span></div><ol class="opts">
-<li data-l="A"><span class="en">Fintech</span><span class="zh">金融科技</span></li>
-<li data-l="B"><span class="en">Investment</span><span class="zh">投資</span></li>
-<li data-l="C"><span class="en">Marketing</span><span class="zh">行銷</span></li>
-<li data-l="D"><span class="en">International finance</span><span class="zh">國際財務</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>C</b></div><div class="expl"><span class="en">The five areas are corporate finance, investments, financial institutions, international finance and fintech. Marketing is a reason to study finance, not an area of it.</span><span class="zh">五大領域為公司理財、投資、金融機構、國際財務、金融科技。行銷是「為何學財務」的理由之一，不是財務領域。</span></div>
-</details></div>
+</div></div>
+<div class="q" data-ans="2">
+<div class="qn">Q2</div><div class="stem">Which of the following is <b>not</b> the essence of capital budgeting?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">Size of future cash flows</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">Timing of future cash flows</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">How to raise capital</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">Risk of future cash flows</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>C</b></div><div class="expl"><span class="en">The essence of capital budgeting is the size, timing and risk of future cash flows. How to raise capital is a capital structure decision.</span><span class="zh">資本預算的核心是未來現金流量的大小、時點與風險。如何籌資屬於資本結構決策。</span></div>
+</div></div>
+<div class="q" data-ans="0">
+<div class="qn">Q3</div><div class="stem">Which Fintech innovation finances customers' purchases?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">Buy now, pay later</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">P2P lending</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">Crowdfunding</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">Mobile payment</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>A</b></div><div class="expl"><span class="en">BNPL firms (e.g., Affirm) work with retailers to fund customers' purchases, repaid in installments.</span><span class="zh">先買後付業者（如 Affirm）與零售商合作，為顧客的購物提供融資，顧客再分期償還。</span></div>
+</div></div>
+<div class="q" data-ans="0">
+<div class="qn">Q4</div><div class="stem">Which form of business organization is least regulated?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">Sole proprietorship</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">Partnership</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">Corporation</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">Limited Liability Company</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>A</b></div><div class="expl"><span class="en">A sole proprietorship is the simplest business to start and the least regulated form.</span><span class="zh">獨資是最容易設立、法令規範最少的組織型態。</span></div>
+</div></div>
+<div class="q" data-ans="0">
+<div class="qn">Q5</div><div class="stem">What is the main cause of the agency problem?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">The dispersion of ownership for a corporation</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">The shareholders in a corporation have limited liability for debts</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">The financial manager attempts to maximize the market value of the existing stock</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">The ownership of a corporation can be readily transferred</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>A</b></div><div class="expl"><span class="en">With ownership spread over many stockholders, management may effectively control the firm and pursue its own goals.</span><span class="zh">股權分散在眾多股東手中，管理階層實質控制公司，可能追求自身目標。</span></div>
+</div></div>
+<div class="q" data-ans="0">
+<div class="qn">Q6</div><div class="stem">Why is the ability of sole proprietorships and partnerships to grow limited?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">The owners have unlimited liabilities</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">The ownership can be transferred</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">The stockholders can elect the board of directors</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">The managers control the corporation</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>A</b></div><div class="expl"><span class="en">Unlimited liability, limited life and difficult ownership transfer limit their ability to raise cash, and so to grow. Only A is one of these.</span><span class="zh">無限責任、存續有限、所有權移轉困難使其籌資受限，成長也受限。只有 A 屬於這些原因。</span></div>
+</div></div>
+<div class="q" data-ans="2">
+<div class="qn">Q7</div><div class="stem">Which statement about a corporation is correct?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">The life of the corporation is limited</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">A corporation cannot be taken over</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">The corporate form is superior when it comes to raising cash</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">A corporation is not a legal person</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>C</b></div><div class="expl"><span class="en">Easy transfer of shares, unlimited life and limited liability make the corporation superior for raising cash. A, B and D are all false.</span><span class="zh">股份易移轉、永續經營、有限責任使公司最容易籌資。A、B、D 皆錯誤。</span></div>
+</div></div>
+<div class="q" data-ans="2">
+<div class="qn">Q8</div><div class="stem">Which of the following is <b>not</b> one of the basic areas of finance?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">Fintech</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">Investment</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">Marketing</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">International finance</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>C</b></div><div class="expl"><span class="en">The five areas are corporate finance, investments, financial institutions, international finance and fintech. Marketing is a reason to study finance, not an area of it.</span><span class="zh">五大領域為公司理財、投資、金融機構、國際財務、金融科技。行銷是「為何學財務」的理由之一，不是財務領域。</span></div>
+</div></div>
 </section>
 <section class="chapter" id="ex2"><h2>Exercise 2<small>Ch 4 · Time Value of Money 貨幣時間價值</small></h2>
-<div class="q">
-<div class="qn">Q9</div><div class="stem"><span class="en">Which statement related to the time value of money is <b>incorrect</b>?</span><span class="zh">關於貨幣時間價值的敘述，何者<b>錯誤</b>？</span></div><ol class="opts">
-<li data-l="A"><span class="en">A dollar in hand today is worth more than a dollar promised in the future.</span><span class="zh">今天的一元比未來承諾的一元更有價值。</span></li>
-<li data-l="B"><span class="en">The trade-off between money now and money later depends on the rate you can earn by investing.</span><span class="zh">現在與未來的錢之間的取捨取決於投資報酬率。</span></li>
-<li data-l="C"><span class="en">Future value is the cash value of an investment at some time in the future.</span><span class="zh">終值是投資在未來某時點的現金價值。</span></li>
-<li data-l="D"><span class="en">For a given time period, the lower the interest rate, the larger the future value.</span><span class="zh">期間固定時，利率越低，終值越大。</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>D</b></div><div class="expl"><span class="en">For a given t, FV = PV(1+r)<sup>t</sup> <b>increases</b> as r increases. D reverses the relationship.</span><span class="zh">t 固定時，FV = PV(1+r)<sup>t</sup> 隨 r 上升而<b>增加</b>。D 把關係講反了。</span></div>
-</details></div>
-<div class="q">
-<div class="qn">Q10</div><div class="stem"><span class="en">Which statement related to the time value of money is <b>incorrect</b>?</span><span class="zh">關於貨幣時間價值的敘述，何者<b>錯誤</b>？</span></div><ol class="opts">
-<li data-l="A"><span class="en">Compounding the interest means earning interest on interest, so we call the result compound interest.</span><span class="zh">複利是利上加利，所以稱為複利。</span></li>
-<li data-l="B"><span class="en">Reinvesting the interest is called compounding.</span><span class="zh">利息再投資稱為複利。</span></li>
-<li data-l="C"><span class="en">With simple interest, the interest is not reinvested, so interest is earned each period only on the original principal.</span><span class="zh">單利不將利息再投資，每期只對原始本金計息。</span></li>
-<li data-l="D"><span class="en">The effect of compounding is great over short time periods.</span><span class="zh">複利效果在短期內很大。</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>D</b></div><div class="expl"><span class="en">The slides say the effect of compounding is <b>not great over short periods</b>, but really adds up as the horizon grows.</span><span class="zh">投影片指出複利效果在<b>短期並不明顯</b>，期間拉長才會大幅累積。</span></div>
-</details></div>
-<div class="q">
-<div class="qn">Q11</div><div class="stem"><span class="en">You need $1,000 in three years and can earn 12%. How much must you invest today?</span><span class="zh">三年後需要 $1,000，報酬率 12%，今天要投資多少？</span></div><ol class="opts">
-<li data-l="A"><span class="en">$1000/(1+r)<sup>t</sup> = 1000/1.12<sup>3</sup> = $711.8</span></li>
-<li data-l="B"><span class="en">$1000×(1+r)<sup>t</sup> = 1000×1.12<sup>3</sup> = $1,404.9</span></li>
-<li data-l="C"><span class="en">$1000×(1+r)×t = 1000×1.12×3 = $3,360</span></li>
-<li data-l="D"><span class="en">$1000/(1+r×t) = 1000/1.36 = $735.3</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>A</b></div><div class="expl"><span class="en">This asks for a PV: PV = FV/(1+r)<sup>t</sup> = 1,000/1.404928 = <b>$711.78</b>. B is an FV; D wrongly uses simple interest.</span><span class="zh">求現值：PV = 1,000/1.404928 = <b>$711.78</b>。B 是終值；D 錯用單利。</span></div>
-</details></div>
-<div class="q">
-<div class="qn">Q12</div><div class="stem"><span class="en">You will invest $1,000 two years from now. What is its FV at year 4 if the rate is 10%?</span><span class="zh">兩年後投入 $1,000，利率 10%，第四年時的終值是多少？</span></div><ol class="opts">
-<li data-l="A"><span class="en">$1000×1.1<sup>2</sup> = $1,210</span></li>
-<li data-l="B"><span class="en">$1000×1.1<sup>4</sup> = $1,464.1</span></li>
-<li data-l="C"><span class="en">$1000×(1+0.1×4) = $1,400</span></li>
-<li data-l="D"><span class="en">$1000/1.1<sup>4</sup> = $683</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>A</b></div><div class="expl"><span class="en">The money is invested at year 2 and grows until year 4, so it compounds for 4 − 2 = <b>2 periods</b>: 1,000 × 1.1<sup>2</sup> = <b>$1,210</b>.</span><span class="zh">資金在第 2 年投入、成長到第 4 年，只複利 4 − 2 = <b>2 期</b>：1,000 × 1.1<sup>2</sup> = <b>$1,210</b>。</span></div>
-</details></div>
-<div class="q">
-<div class="qn">Q13</div><div class="stem"><span class="en">What is the value at year 2 of $1,000 received at year 5? The rate is 7%.</span><span class="zh">第 5 年收到 $1,000，在第 2 年時的價值是多少？利率 7%。</span></div><ol class="opts">
-<li data-l="A"><span class="en">1000/1.07<sup>3</sup> = $816.29</span></li>
-<li data-l="B"><span class="en">1000/1.07<sup>5</sup> = $712.99</span></li>
-<li data-l="C"><span class="en">1000/1.07<sup>2</sup> = $873.44</span></li>
-<li data-l="D"><span class="en">1000×1.07<sup>2</sup> = $1,144.9</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>A</b></div><div class="expl"><span class="en">Discount back from year 5 to year 2 = <b>3 periods</b>: 1,000/1.07<sup>3</sup> = 1,000/1.225043 = <b>$816.30</b>.</span><span class="zh">從第 5 年折現到第 2 年 = <b>3 期</b>：1,000/1.07<sup>3</sup> = <b>$816.30</b>。</span></div>
-</details></div>
-<div class="q">
-<div class="qn">Q14</div><div class="stem"><span class="en">If you invest $1,000 today at 5%, what simple interest will you earn in three years?</span><span class="zh">今天投資 $1,000、利率 5%，三年的單利是多少？</span></div><ol class="opts">
-<li data-l="A"><span class="en">1000×1.05<sup>3</sup> − 1000 = $157.625</span></li>
-<li data-l="B"><span class="en">1000×0.05×3 = $150</span></li>
-<li data-l="C"><span class="en">1000×1.05<sup>3</sup> − 1000 − 150 = $7.625</span></li>
-<li data-l="D"><span class="en">1000×1.05<sup>3</sup> = $1,157.625</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>B</b></div><div class="expl"><span class="en">Simple interest = principal × r × t = 1,000 × 0.05 × 3 = <b>$150</b>. A is total interest; C is interest on interest; D is FV.</span><span class="zh">單利 = 本金 × r × t = <b>$150</b>。A 是總利息；C 是利上加利；D 是終值。</span></div>
-</details></div>
-<div class="q">
-<div class="qn">Q15</div><div class="stem"><span class="en">If you invest $1,000 today at 5%, what interest on interest will you earn in three years?</span><span class="zh">今天投資 $1,000、利率 5%，三年的利上加利是多少？</span></div><ol class="opts">
-<li data-l="A"><span class="en">1000×1.05<sup>3</sup> − 1000 = $157.625</span></li>
-<li data-l="B"><span class="en">1000×0.05×3 = $150</span></li>
-<li data-l="C"><span class="en">1000×1.05<sup>3</sup> − 1000 − 150 = $7.625</span></li>
-<li data-l="D"><span class="en">1000×1.05<sup>3</sup> = $1,157.625</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>C</b></div><div class="expl"><span class="en">Interest on interest = total interest − simple interest = (1,157.625 − 1,000) − 150 = <b>$7.625</b>.</span><span class="zh">利上加利 = 總利息 − 單利 = (1,157.625 − 1,000) − 150 = <b>$7.625</b>。</span></div>
-</details></div>
+<div class="q" data-ans="3">
+<div class="qn">Q9</div><div class="stem">Which statement related to the time value of money is <b>incorrect</b>?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">A dollar in hand today is worth more than a dollar promised in the future.</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">The trade-off between money now and money later depends on the rate you can earn by investing.</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">Future value is the cash value of an investment at some time in the future.</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">For a given time period, the lower the interest rate, the larger the future value.</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>D</b></div><div class="expl"><span class="en">For a given t, FV = PV(1+r)<sup>t</sup> <b>increases</b> as r increases. D reverses the relationship.</span><span class="zh">t 固定時，FV = PV(1+r)<sup>t</sup> 隨 r 上升而<b>增加</b>。D 把關係講反了。</span></div>
+</div></div>
+<div class="q" data-ans="3">
+<div class="qn">Q10</div><div class="stem">Which statement related to the time value of money is <b>incorrect</b>?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">Compounding the interest means earning interest on interest, so we call the result compound interest.</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">Reinvesting the interest is called compounding.</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">With simple interest, the interest is not reinvested, so interest is earned each period only on the original principal.</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">The effect of compounding is great over short time periods.</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>D</b></div><div class="expl"><span class="en">The slides say the effect of compounding is <b>not great over short periods</b>, but really adds up as the horizon grows.</span><span class="zh">投影片指出複利效果在<b>短期並不明顯</b>，期間拉長才會大幅累積。</span></div>
+</div></div>
+<div class="q" data-ans="0">
+<div class="qn">Q11</div><div class="stem">You need $1,000 in three years and can earn 12%. How much must you invest today?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">$1000/(1+r)<sup>t</sup> = 1000/1.12<sup>3</sup> = $711.8</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">$1000×(1+r)<sup>t</sup> = 1000×1.12<sup>3</sup> = $1,404.9</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">$1000×(1+r)×t = 1000×1.12×3 = $3,360</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">$1000/(1+r×t) = 1000/1.36 = $735.3</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>A</b></div><div class="expl"><span class="en">This asks for a PV: PV = FV/(1+r)<sup>t</sup> = 1,000/1.404928 = <b>$711.78</b>. B is an FV; D wrongly uses simple interest.</span><span class="zh">求現值：PV = 1,000/1.404928 = <b>$711.78</b>。B 是終值；D 錯用單利。</span></div>
+</div></div>
+<div class="q" data-ans="0">
+<div class="qn">Q12</div><div class="stem">You will invest $1,000 two years from now. What is its FV at year 4 if the rate is 10%?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">$1000×1.1<sup>2</sup> = $1,210</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">$1000×1.1<sup>4</sup> = $1,464.1</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">$1000×(1+0.1×4) = $1,400</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">$1000/1.1<sup>4</sup> = $683</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>A</b></div><div class="expl"><span class="en">The money is invested at year 2 and grows until year 4, so it compounds for 4 − 2 = <b>2 periods</b>: 1,000 × 1.1<sup>2</sup> = <b>$1,210</b>.</span><span class="zh">資金在第 2 年投入、成長到第 4 年，只複利 4 − 2 = <b>2 期</b>：1,000 × 1.1<sup>2</sup> = <b>$1,210</b>。</span></div>
+</div></div>
+<div class="q" data-ans="0">
+<div class="qn">Q13</div><div class="stem">What is the value at year 2 of $1,000 received at year 5? The rate is 7%.</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">1000/1.07<sup>3</sup> = $816.29</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">1000/1.07<sup>5</sup> = $712.99</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">1000/1.07<sup>2</sup> = $873.44</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">1000×1.07<sup>2</sup> = $1,144.9</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>A</b></div><div class="expl"><span class="en">Discount back from year 5 to year 2 = <b>3 periods</b>: 1,000/1.07<sup>3</sup> = 1,000/1.225043 = <b>$816.30</b>.</span><span class="zh">從第 5 年折現到第 2 年 = <b>3 期</b>：1,000/1.07<sup>3</sup> = <b>$816.30</b>。</span></div>
+</div></div>
+<div class="q" data-ans="1">
+<div class="qn">Q14</div><div class="stem">If you invest $1,000 today at 5%, what simple interest will you earn in three years?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">1000×1.05<sup>3</sup> − 1000 = $157.625</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">1000×0.05×3 = $150</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">1000×1.05<sup>3</sup> − 1000 − 150 = $7.625</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">1000×1.05<sup>3</sup> = $1,157.625</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>B</b></div><div class="expl"><span class="en">Simple interest = principal × r × t = 1,000 × 0.05 × 3 = <b>$150</b>. A is total interest; C is interest on interest; D is FV.</span><span class="zh">單利 = 本金 × r × t = <b>$150</b>。A 是總利息；C 是利上加利；D 是終值。</span></div>
+</div></div>
+<div class="q" data-ans="2">
+<div class="qn">Q15</div><div class="stem">If you invest $1,000 today at 5%, what interest on interest will you earn in three years?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">1000×1.05<sup>3</sup> − 1000 = $157.625</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">1000×0.05×3 = $150</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">1000×1.05<sup>3</sup> − 1000 − 150 = $7.625</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">1000×1.05<sup>3</sup> = $1,157.625</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>C</b></div><div class="expl"><span class="en">Interest on interest = total interest − simple interest = (1,157.625 − 1,000) − 150 = <b>$7.625</b>.</span><span class="zh">利上加利 = 總利息 − 單利 = (1,157.625 − 1,000) − 150 = <b>$7.625</b>。</span></div>
+</div></div>
 </section>
 <section class="chapter" id="ex3"><h2>Exercise 3<small>Ch 4 · Discount Rate & Number of Periods 求利率與期數</small></h2>
-<div class="q">
-<div class="qn">Q16</div><div class="stem"><span class="en">An investment promises to double your money in 10 years. What is the approximate rate of return?</span><span class="zh">某投資保證 10 年讓資金翻倍，大約的報酬率是多少？</span></div><ol class="opts">
-<li data-l="A"><span class="en">8%</span></li>
-<li data-l="B"><span class="en">7%</span></li>
-<li data-l="C"><span class="en">10%</span></li>
-<li data-l="D"><span class="en">6%</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>B</b></div><div class="expl"><span class="en">Rule of 72: r ≈ 72/10 = 7.2% ≈ <b>7%</b>. Exact: 2<sup>1/10</sup> − 1 = 7.18%.</span><span class="zh">72 法則：r ≈ 72/10 = 7.2% ≈ <b>7%</b>。精確值 2<sup>1/10</sup> − 1 = 7.18%。</span></div>
-</details></div>
-<div class="q">
-<div class="qn">Q17</div><div class="stem"><span class="en">You are saving to buy a house for $8,000,000 and have $1,000,000 today. Your money earns 5%. How long must you wait?</span><span class="zh">存錢買 $8,000,000 的房子，目前有 $1,000,000，報酬率 5%，需等幾年？</span></div><ol class="opts">
-<li data-l="A"><span class="en">42.62</span></li>
-<li data-l="B"><span class="en">31.83</span></li>
-<li data-l="C"><span class="en">48.24</span></li>
-<li data-l="D"><span class="en">38.21</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>A</b></div><div class="expl"><span class="en">1.05<sup>t</sup> = 8,000,000/1,000,000 = 8 → t = ln 8 / ln 1.05 = 2.0794/0.0488 = <b>42.62 years</b>. Calculator: 5 I/Y, 1,000,000 +/− PV, 8,000,000 FV, CPT N.</span><span class="zh">1.05<sup>t</sup> = 8 → t = ln8/ln1.05 = <b>42.62 年</b>。計算機：5 I/Y、1,000,000 +/− PV、8,000,000 FV、CPT N。</span></div>
-</details></div>
-<div class="q">
-<div class="qn">Q18</div><div class="stem"><span class="en">You want to retire in 40 years with $10,000,000 and have $100,000 today. What rate of return do you need?</span><span class="zh">希望 40 年後退休時有 $10,000,000，目前有 $100,000，需要多少報酬率？</span></div><ol class="opts">
-<li data-l="A"><span class="en">12.44%</span></li>
-<li data-l="B"><span class="en">10.25%</span></li>
-<li data-l="C"><span class="en">13.64%</span></li>
-<li data-l="D"><span class="en">15%</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>A</b></div><div class="expl"><span class="en">(1 + r)<sup>40</sup> = 10,000,000/100,000 = 100 → r = 100<sup>1/40</sup> − 1 = <b>12.20%</b>. Calculator: 40 N, 100,000 +/− PV, 10,000,000 FV, CPT I/Y.</span><span class="zh">(1 + r)<sup>40</sup> = 100 → r = 100<sup>1/40</sup> − 1 = <b>12.20%</b>。計算機：40 N、100,000 +/− PV、10,000,000 FV、CPT I/Y。</span></div>
+<div class="q" data-ans="1">
+<div class="qn">Q16</div><div class="stem">An investment promises to double your money in 10 years. What is the approximate rate of return?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">8%</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">7%</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">10%</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">6%</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>B</b></div><div class="expl"><span class="en">Rule of 72: r ≈ 72/10 = 7.2% ≈ <b>7%</b>. Exact: 2<sup>1/10</sup> − 1 = 7.18%.</span><span class="zh">72 法則：r ≈ 72/10 = 7.2% ≈ <b>7%</b>。精確值 2<sup>1/10</sup> − 1 = 7.18%。</span></div>
+</div></div>
+<div class="q" data-ans="0">
+<div class="qn">Q17</div><div class="stem">You are saving to buy a house for $8,000,000 and have $1,000,000 today. Your money earns 5%. How long must you wait?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">42.62</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">31.83</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">48.24</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">38.21</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>A</b></div><div class="expl"><span class="en">1.05<sup>t</sup> = 8,000,000/1,000,000 = 8 → t = ln 8 / ln 1.05 = 2.0794/0.0488 = <b>42.62 years</b>. Calculator: 5 I/Y, 1,000,000 +/− PV, 8,000,000 FV, CPT N.</span><span class="zh">1.05<sup>t</sup> = 8 → t = ln8/ln1.05 = <b>42.62 年</b>。計算機：5 I/Y、1,000,000 +/− PV、8,000,000 FV、CPT N。</span></div>
+</div></div>
+<div class="q" data-ans="0">
+<div class="qn">Q18</div><div class="stem">You want to retire in 40 years with $10,000,000 and have $100,000 today. What rate of return do you need?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">12.44%</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">10.25%</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">13.64%</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">15%</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>A</b></div><div class="expl"><span class="en">(1 + r)<sup>40</sup> = 10,000,000/100,000 = 100 → r = 100<sup>1/40</sup> − 1 = <b>12.20%</b>. Calculator: 40 N, 100,000 +/− PV, 10,000,000 FV, CPT I/Y.</span><span class="zh">(1 + r)<sup>40</sup> = 100 → r = 100<sup>1/40</sup> − 1 = <b>12.20%</b>。計算機：40 N、100,000 +/− PV、10,000,000 FV、CPT I/Y。</span></div>
 <div class="warn">⚠ The exact answer, 12.20%, is not among the options. 12.44% is the closest, so it is most likely the intended answer. 精確答案 12.20% 不在選項中；12.44% 最接近，應是預期答案。</div>
-</details></div>
-<div class="q">
-<div class="qn">Q19</div><div class="stem"><span class="en">Which investment is worth investing in? (compare the rates)</span><span class="zh">下列哪項投資最值得？（比較報酬率）</span></div><ol class="opts">
-<li data-l="A"><span class="en">You invest $400 today at 10% compounded.</span><span class="zh">今天投資 $400，年複利 10%</span></li>
-<li data-l="B"><span class="en">You will get $580 in two years if you invest $500 today.</span><span class="zh">今天投資 $500，兩年後得到 $580</span></li>
-<li data-l="C"><span class="en">You will get $1,000 in three years if you invest $800 today.</span><span class="zh">今天投資 $800，三年後得到 $1,000</span></li>
-<li data-l="D"><span class="en">You will get $850 in three years if you invest $600.</span><span class="zh">投資 $600，三年後得到 $850</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>D</b></div><div class="expl"><span class="en">Compute each implied rate r = (FV/PV)<sup>1/t</sup> − 1: A = 10%; B = (580/500)<sup>1/2</sup> − 1 = 7.70%; C = (1,000/800)<sup>1/3</sup> − 1 = 7.72%; D = (850/600)<sup>1/3</sup> − 1 = <b>12.31%</b>. D has the highest return.</span><span class="zh">計算各隱含報酬率：A = 10%；B = 7.70%；C = 7.72%；D = <b>12.31%</b>。D 報酬率最高。</span></div>
-</details></div>
+</div></div>
+<div class="q" data-ans="3">
+<div class="qn">Q19</div><div class="stem">Which investment is worth investing in? (compare the rates)</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">You invest $400 today at 10% compounded.</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">You will get $580 in two years if you invest $500 today.</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">You will get $1,000 in three years if you invest $800 today.</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">You will get $850 in three years if you invest $600.</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>D</b></div><div class="expl"><span class="en">Compute each implied rate r = (FV/PV)<sup>1/t</sup> − 1: A = 10%; B = (580/500)<sup>1/2</sup> − 1 = 7.70%; C = (1,000/800)<sup>1/3</sup> − 1 = 7.72%; D = (850/600)<sup>1/3</sup> − 1 = <b>12.31%</b>. D has the highest return.</span><span class="zh">計算各隱含報酬率：A = 10%；B = 7.70%；C = 7.72%；D = <b>12.31%</b>。D 報酬率最高。</span></div>
+</div></div>
 </section>
 <section class="chapter" id="ex4"><h2>Exercise 4<small>Ch 5 · Multiple Cash Flows, Annuities & Perpetuities 多筆現金流量、年金與永續年金</small></h2>
-<div class="q">
-<div class="qn">Q20</div><div class="stem"><span class="en">[Setup: invest $200 in one year and $300 in three years at 10%.] How much will you have in four years?</span><span class="zh">【情境：第 1 年投入 $200、第 3 年投入 $300，利率 10%】第四年時共有多少？</span></div><ol class="opts">
-<li data-l="A"><span class="en">596.20</span></li>
-<li data-l="B"><span class="en">560.32</span></li>
-<li data-l="C"><span class="en">612.22</span></li>
-<li data-l="D"><span class="en">581.34</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>A</b></div><div class="expl"><span class="en">$200 compounds 3 years, $300 compounds 1 year: 200 × 1.1<sup>3</sup> + 300 × 1.1 = 266.20 + 330 = <b>$596.20</b>.</span><span class="zh">$200 複利 3 年、$300 複利 1 年：266.20 + 330 = <b>$596.20</b>。</span></div>
-</details></div>
-<div class="q">
-<div class="qn">Q21</div><div class="stem"><span class="en">How much interest is earned in four years?</span><span class="zh">四年共賺多少利息？</span></div><ol class="opts">
-<li data-l="A"><span class="en">96.20</span></li>
-<li data-l="B"><span class="en">60.32</span></li>
-<li data-l="C"><span class="en">49.38</span></li>
-<li data-l="D"><span class="en">66.2</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>A</b></div><div class="expl"><span class="en">Interest = FV − total deposits = 596.20 − (200 + 300) = <b>$96.20</b>.</span><span class="zh">利息 = 終值 − 總投入 = 596.20 − 500 = <b>$96.20</b>。</span></div>
-</details></div>
-<div class="q">
-<div class="qn">Q22</div><div class="stem"><span class="en">How much will you have in six years at 10%?</span><span class="zh">第六年時共有多少？</span></div><ol class="opts">
-<li data-l="A"><span class="en">721.40</span></li>
-<li data-l="B"><span class="en">655.82</span></li>
-<li data-l="C"><span class="en">616.35</span></li>
-<li data-l="D"><span class="en">677.98</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>A</b></div><div class="expl"><span class="en">Compound the year-4 value 2 more years: 596.20 × 1.1<sup>2</sup> = <b>$721.40</b>. (Or 200 × 1.1<sup>5</sup> + 300 × 1.1<sup>3</sup> = 322.10 + 399.30.)</span><span class="zh">把第 4 年的價值再複利 2 年：596.20 × 1.1<sup>2</sup> = <b>$721.40</b>。</span></div>
-</details></div>
-<div class="q">
-<div class="qn">Q23</div><div class="stem"><span class="en">What is the present value today of these cash flows?</span><span class="zh">這些現金流量今天的現值是多少？</span></div><ol class="opts">
-<li data-l="A"><span class="en">407.21</span></li>
-<li data-l="B"><span class="en">447.93</span></li>
-<li data-l="C"><span class="en">454.54</span></li>
-<li data-l="D"><span class="en">410.35</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>A</b></div><div class="expl"><span class="en">PV = 200/1.1 + 300/1.1<sup>3</sup> = 181.82 + 225.39 = <b>$407.21</b>. Check: 596.20/1.1<sup>4</sup> = 407.21.</span><span class="zh">PV = 181.82 + 225.39 = <b>$407.21</b>。驗算：596.20/1.1<sup>4</sup> = 407.21。</span></div>
-</details></div>
-<div class="q">
-<div class="qn">Q24</div><div class="stem"><span class="en">An asset pays $600 at the end of each of the next five years. To earn 8%, how much would you offer today?</span><span class="zh">某資產未來五年每年底支付 $600，要求報酬 8%，今天願付多少？</span></div><ol class="opts">
-<li data-l="A"><span class="en">2599.80</span></li>
-<li data-l="B"><span class="en">2207.78</span></li>
-<li data-l="C"><span class="en">2395.62</span></li>
-<li data-l="D"><span class="en">3000</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>C</b></div><div class="expl"><span class="en">Ordinary annuity PV = 600 × [1 − 1/1.08<sup>5</sup>]/0.08 = 600 × 3.99271 = <b>$2,395.63</b>. Calculator: 5 N, 8 I/Y, 600 PMT, CPT PV.</span><span class="zh">普通年金現值 = 600 × 3.99271 = <b>$2,395.63</b>。計算機：5 N、8 I/Y、600 PMT、CPT PV。</span></div>
-</details></div>
-<div class="q">
-<div class="qn">Q25</div><div class="stem"><span class="en">The same asset ($600 a year for 5 years) is bought for $2,200. What is the implicit interest rate?</span><span class="zh">同一資產（5 年每年 $600）以 $2,200 買入，隱含利率是多少？</span></div><ol class="opts">
-<li data-l="A"><span class="en">11.32%</span></li>
-<li data-l="B"><span class="en">10.11%</span></li>
-<li data-l="C"><span class="en">15.62%</span></li>
-<li data-l="D"><span class="en">6.8%</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>A</b></div><div class="expl"><span class="en">Annuity factor = 2,200/600 = 3.6667. At 11% the factor is 3.6959; at 12% it is 3.6048, so r is between them, about <b>11.32%</b>. Calculator: 5 N, 600 PMT, 2,200 +/− PV, CPT I/Y.</span><span class="zh">年金因子 = 2,200/600 = 3.6667；11% 為 3.6959、12% 為 3.6048，故 r 約 <b>11.32%</b>。計算機：5 N、600 PMT、2,200 +/− PV、CPT I/Y。</span></div>
-</details></div>
-<div class="q">
-<div class="qn">Q26</div><div class="stem"><span class="en">What is the PV of $600 at the end of every year forever, at 9%?</span><span class="zh">每年底永久收 $600，利率 9%，現值是多少？</span></div><ol class="opts">
-<li data-l="A"><span class="en">6666.67</span></li>
-<li data-l="B"><span class="en">6000</span></li>
-<li data-l="C"><span class="en">5400</span></li>
-<li data-l="D"><span class="en">6540</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>A</b></div><div class="expl"><span class="en">Perpetuity PV = C/r = 600/0.09 = <b>$6,666.67</b>.</span><span class="zh">永續年金現值 = C/r = 600/0.09 = <b>$6,666.67</b>。</span></div>
-</details></div>
+<div class="q" data-ans="0">
+<div class="qn">Q20</div><div class="stem">[Setup: invest $200 in one year and $300 in three years at 10%.] How much will you have in four years?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">596.20</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">560.32</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">612.22</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">581.34</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>A</b></div><div class="expl"><span class="en">$200 compounds 3 years, $300 compounds 1 year: 200 × 1.1<sup>3</sup> + 300 × 1.1 = 266.20 + 330 = <b>$596.20</b>.</span><span class="zh">$200 複利 3 年、$300 複利 1 年：266.20 + 330 = <b>$596.20</b>。</span></div>
+</div></div>
+<div class="q" data-ans="0">
+<div class="qn">Q21</div><div class="stem">How much interest is earned in four years?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">96.20</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">60.32</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">49.38</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">66.2</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>A</b></div><div class="expl"><span class="en">Interest = FV − total deposits = 596.20 − (200 + 300) = <b>$96.20</b>.</span><span class="zh">利息 = 終值 − 總投入 = 596.20 − 500 = <b>$96.20</b>。</span></div>
+</div></div>
+<div class="q" data-ans="0">
+<div class="qn">Q22</div><div class="stem">How much will you have in six years at 10%?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">721.40</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">655.82</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">616.35</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">677.98</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>A</b></div><div class="expl"><span class="en">Compound the year-4 value 2 more years: 596.20 × 1.1<sup>2</sup> = <b>$721.40</b>. (Or 200 × 1.1<sup>5</sup> + 300 × 1.1<sup>3</sup> = 322.10 + 399.30.)</span><span class="zh">把第 4 年的價值再複利 2 年：596.20 × 1.1<sup>2</sup> = <b>$721.40</b>。</span></div>
+</div></div>
+<div class="q" data-ans="0">
+<div class="qn">Q23</div><div class="stem">What is the present value today of these cash flows?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">407.21</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">447.93</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">454.54</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">410.35</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>A</b></div><div class="expl"><span class="en">PV = 200/1.1 + 300/1.1<sup>3</sup> = 181.82 + 225.39 = <b>$407.21</b>. Check: 596.20/1.1<sup>4</sup> = 407.21.</span><span class="zh">PV = 181.82 + 225.39 = <b>$407.21</b>。驗算：596.20/1.1<sup>4</sup> = 407.21。</span></div>
+</div></div>
+<div class="q" data-ans="2">
+<div class="qn">Q24</div><div class="stem">An asset pays $600 at the end of each of the next five years. To earn 8%, how much would you offer today?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">2599.80</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">2207.78</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">2395.62</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">3000</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>C</b></div><div class="expl"><span class="en">Ordinary annuity PV = 600 × [1 − 1/1.08<sup>5</sup>]/0.08 = 600 × 3.99271 = <b>$2,395.63</b>. Calculator: 5 N, 8 I/Y, 600 PMT, CPT PV.</span><span class="zh">普通年金現值 = 600 × 3.99271 = <b>$2,395.63</b>。計算機：5 N、8 I/Y、600 PMT、CPT PV。</span></div>
+</div></div>
+<div class="q" data-ans="0">
+<div class="qn">Q25</div><div class="stem">The same asset ($600 a year for 5 years) is bought for $2,200. What is the implicit interest rate?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">11.32%</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">10.11%</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">15.62%</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">6.8%</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>A</b></div><div class="expl"><span class="en">Annuity factor = 2,200/600 = 3.6667. At 11% the factor is 3.6959; at 12% it is 3.6048, so r is between them, about <b>11.32%</b>. Calculator: 5 N, 600 PMT, 2,200 +/− PV, CPT I/Y.</span><span class="zh">年金因子 = 2,200/600 = 3.6667；11% 為 3.6959、12% 為 3.6048，故 r 約 <b>11.32%</b>。計算機：5 N、600 PMT、2,200 +/− PV、CPT I/Y。</span></div>
+</div></div>
+<div class="q" data-ans="0">
+<div class="qn">Q26</div><div class="stem">What is the PV of $600 at the end of every year forever, at 9%?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">6666.67</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">6000</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">5400</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">6540</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>A</b></div><div class="expl"><span class="en">Perpetuity PV = C/r = 600/0.09 = <b>$6,666.67</b>.</span><span class="zh">永續年金現值 = C/r = 600/0.09 = <b>$6,666.67</b>。</span></div>
+</div></div>
 </section>
 <section class="chapter" id="ex5"><h2>Exercise 5<small>Ch 6 · Bonds and Bond Valuation 債券評價</small></h2>
-<div class="q">
-<div class="qn">Q27</div><div class="stem"><span class="en">To borrow money from the public on a long-term basis, a corporation should:</span><span class="zh">公司若要向大眾長期借款，應該：</span></div><ol class="opts">
-<li data-l="A"><span class="en">Issue debt securities</span><span class="zh">發行債務證券</span></li>
-<li data-l="B"><span class="en">Issue equity securities</span><span class="zh">發行權益證券</span></li>
-<li data-l="C"><span class="en">Look for bank loans</span><span class="zh">尋求銀行貸款</span></li>
-<li data-l="D"><span class="en">Buy Treasury bonds</span><span class="zh">購買公債</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>A</b></div><div class="expl"><span class="en">Long-term public borrowing is done by issuing debt securities, generically called bonds. Equity is not borrowing; a bank loan is not from the public.</span><span class="zh">向大眾長期借款是發行債務證券（統稱債券）。發行股票不是借款；銀行貸款不是向大眾借。</span></div>
-</details></div>
-<div class="q">
-<div class="qn">Q28</div><div class="stem"><span class="en">Which information will <b>not</b> be displayed in a bond's indenture?</span><span class="zh">下列哪項資訊<b>不會</b>出現在債券契約中？</span></div><ol class="opts">
-<li data-l="A"><span class="en">Yield to maturity</span><span class="zh">殖利率</span></li>
-<li data-l="B"><span class="en">Bond's coupon</span><span class="zh">票息</span></li>
-<li data-l="C"><span class="en">Bond's par value</span><span class="zh">面額</span></li>
-<li data-l="D"><span class="en">Maturity</span><span class="zh">到期日</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>A</b></div><div class="expl"><span class="en">The indenture fixes the bond's terms (coupon, face value, maturity, security, call provisions, covenants). YTM is set by the market and changes with the bond's price, so it is not in the contract.</span><span class="zh">債券契約載明固定條款（票息、面額、到期日、擔保、贖回條款、保護條款）。殖利率由市場決定、隨價格變動，不在契約中。</span></div>
-</details></div>
-<div class="q">
-<div class="qn">Q29</div><div class="stem"><span class="en">When market interest rates rise, a par value bond could become:</span><span class="zh">市場利率上升時，平價債券可能變成：</span></div><ol class="opts">
-<li data-l="A"><span class="en">A discount bond</span><span class="zh">折價債券</span></li>
-<li data-l="B"><span class="en">A premium bond</span><span class="zh">溢價債券</span></li>
-<li data-l="C"><span class="en">A floating-rate bond</span><span class="zh">浮動利率債券</span></li>
-<li data-l="D"><span class="en">A convertible bond</span><span class="zh">可轉換債券</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>A</b></div><div class="expl"><span class="en">Bond prices and rates move in opposite directions. When rates rise above the coupon rate, the price falls below face value → discount bond (Xanth: $1,000 → $884.82).</span><span class="zh">債券價格與利率反向。利率升到高於票面利率時，價格跌破面額 → 折價債券（Xanth：$1,000 → $884.82）。</span></div>
-</details></div>
-<div class="q">
-<div class="qn">Q30</div><div class="stem"><span class="en">Which bond suffers from greater interest rate risk?</span><span class="zh">哪種債券的利率風險較大？</span></div><ol class="opts">
-<li data-l="A"><span class="en">Bonds with a longer maturity</span><span class="zh">到期期間較長的債券</span></li>
-<li data-l="B"><span class="en">Bonds with a higher coupon rate</span><span class="zh">票面利率較高的債券</span></li>
-<li data-l="C"><span class="en">Bonds with a shorter maturity</span><span class="zh">到期期間較短的債券</span></li>
-<li data-l="D"><span class="en">Bonds with a smaller principal</span><span class="zh">本金較小的債券</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>A</b></div><div class="expl"><span class="en">All else equal, longer maturity and lower coupon rate mean greater interest rate risk.</span><span class="zh">其他條件相同，到期期間越長、票面利率越低，利率風險越大。</span></div>
-</details></div>
-<div class="q">
-<div class="qn">Q31</div><div class="stem"><span class="en">A 10-year bond with an 8% coupon rate and $1,000 principal sells for $950. What is its YTM?</span><span class="zh">10 年期債券，票面利率 8%、本金 $1,000，售價 $950，殖利率是多少？</span></div><ol class="opts">
-<li data-l="A"><span class="en">8.77%</span></li>
-<li data-l="B"><span class="en">9.23%</span></li>
-<li data-l="C"><span class="en">10.12%</span></li>
-<li data-l="D"><span class="en">7.23%</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>A</b></div><div class="expl"><span class="en">Price &lt; par, so YTM &gt; 8%. Solve 950 = 80 × [1 − 1/(1+r)<sup>10</sup>]/r + 1,000/(1+r)<sup>10</sup>. At 8.77%: 518.66 + 431.42 = 950.08 → <b>YTM ≈ 8.77%</b>. Calculator: 10 N, 80 PMT, 950 +/− PV, 1,000 FV, CPT I/Y.</span><span class="zh">價格低於面額 → YTM &gt; 8%。代入 8.77%：518.66 + 431.42 ≈ 950 → <b>YTM ≈ 8.77%</b>。計算機：10 N、80 PMT、950 +/− PV、1,000 FV、CPT I/Y。</span></div>
-</details></div>
-<div class="q">
-<div class="qn">Q32</div><div class="stem"><span class="en">Same bond (10 years, 8% coupon, $1,000). A similar bond yields 9%. How much would you pay?</span><span class="zh">同一債券（10 年、票面 8%、$1,000），類似債券殖利率 9%，你願付多少？</span></div><ol class="opts">
-<li data-l="A"><span class="en">935.82</span></li>
-<li data-l="B"><span class="en">926.17</span></li>
-<li data-l="C"><span class="en">1012.32</span></li>
-<li data-l="D"><span class="en">982.64</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>A</b></div><div class="expl"><span class="en">Price = 80 × [1 − 1/1.09<sup>10</sup>]/0.09 + 1,000/1.09<sup>10</sup> = 513.41 + 422.41 = <b>$935.82</b> (a discount bond, since 8% &lt; 9%).</span><span class="zh">價格 = 513.41 + 422.41 = <b>$935.82</b>（票面 8% &lt; 9%，為折價債券）。</span></div>
-</details></div>
+<div class="q" data-ans="0">
+<div class="qn">Q27</div><div class="stem">To borrow money from the public on a long-term basis, a corporation should:</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">Issue debt securities</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">Issue equity securities</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">Look for bank loans</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">Buy Treasury bonds</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>A</b></div><div class="expl"><span class="en">Long-term public borrowing is done by issuing debt securities, generically called bonds. Equity is not borrowing; a bank loan is not from the public.</span><span class="zh">向大眾長期借款是發行債務證券（統稱債券）。發行股票不是借款；銀行貸款不是向大眾借。</span></div>
+</div></div>
+<div class="q" data-ans="0">
+<div class="qn">Q28</div><div class="stem">Which information will <b>not</b> be displayed in a bond's indenture?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">Yield to maturity</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">Bond's coupon</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">Bond's par value</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">Maturity</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>A</b></div><div class="expl"><span class="en">The indenture fixes the bond's terms (coupon, face value, maturity, security, call provisions, covenants). YTM is set by the market and changes with the bond's price, so it is not in the contract.</span><span class="zh">債券契約載明固定條款（票息、面額、到期日、擔保、贖回條款、保護條款）。殖利率由市場決定、隨價格變動，不在契約中。</span></div>
+</div></div>
+<div class="q" data-ans="0">
+<div class="qn">Q29</div><div class="stem">When market interest rates rise, a par value bond could become:</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">A discount bond</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">A premium bond</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">A floating-rate bond</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">A convertible bond</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>A</b></div><div class="expl"><span class="en">Bond prices and rates move in opposite directions. When rates rise above the coupon rate, the price falls below face value → discount bond (Xanth: $1,000 → $884.82).</span><span class="zh">債券價格與利率反向。利率升到高於票面利率時，價格跌破面額 → 折價債券（Xanth：$1,000 → $884.82）。</span></div>
+</div></div>
+<div class="q" data-ans="0">
+<div class="qn">Q30</div><div class="stem">Which bond suffers from greater interest rate risk?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">Bonds with a longer maturity</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">Bonds with a higher coupon rate</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">Bonds with a shorter maturity</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">Bonds with a smaller principal</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>A</b></div><div class="expl"><span class="en">All else equal, longer maturity and lower coupon rate mean greater interest rate risk.</span><span class="zh">其他條件相同，到期期間越長、票面利率越低，利率風險越大。</span></div>
+</div></div>
+<div class="q" data-ans="0">
+<div class="qn">Q31</div><div class="stem">A 10-year bond with an 8% coupon rate and $1,000 principal sells for $950. What is its YTM?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">8.77%</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">9.23%</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">10.12%</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">7.23%</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>A</b></div><div class="expl"><span class="en">Price &lt; par, so YTM &gt; 8%. Solve 950 = 80 × [1 − 1/(1+r)<sup>10</sup>]/r + 1,000/(1+r)<sup>10</sup>. At 8.77%: 518.66 + 431.42 = 950.08 → <b>YTM ≈ 8.77%</b>. Calculator: 10 N, 80 PMT, 950 +/− PV, 1,000 FV, CPT I/Y.</span><span class="zh">價格低於面額 → YTM &gt; 8%。代入 8.77%：518.66 + 431.42 ≈ 950 → <b>YTM ≈ 8.77%</b>。計算機：10 N、80 PMT、950 +/− PV、1,000 FV、CPT I/Y。</span></div>
+</div></div>
+<div class="q" data-ans="0">
+<div class="qn">Q32</div><div class="stem">Same bond (10 years, 8% coupon, $1,000). A similar bond yields 9%. How much would you pay?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">935.82</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">926.17</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">1012.32</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">982.64</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>A</b></div><div class="expl"><span class="en">Price = 80 × [1 − 1/1.09<sup>10</sup>]/0.09 + 1,000/1.09<sup>10</sup> = 513.41 + 422.41 = <b>$935.82</b> (a discount bond, since 8% &lt; 9%).</span><span class="zh">價格 = 513.41 + 422.41 = <b>$935.82</b>（票面 8% &lt; 9%，為折價債券）。</span></div>
+</div></div>
 </section>
 <section class="chapter" id="ex6"><h2>Exercise 6<small>Ch 2 · Balance Sheet and Income Statement 資產負債表與損益表</small></h2>
-<div class="q">
-<div class="qn">Q33</div><div class="stem"><span class="en">Which statement regarding the income statement is <b>incorrect</b>?</span><span class="zh">關於損益表的敘述，何者<b>錯誤</b>？</span></div><ol class="opts">
-<li data-l="A"><span class="en">It shows the current values of assets and liabilities.</span><span class="zh">它顯示資產與負債的目前價值。</span></li>
-<li data-l="B"><span class="en">It measures performance over a specified period of time.</span><span class="zh">它衡量特定期間的績效。</span></li>
-<li data-l="C"><span class="en">The first thing reported on an income statement is revenue.</span><span class="zh">損益表最先列示的是收入。</span></li>
-<li data-l="D"><span class="en">After the "bottom line", it also shows dividends and addition to retained earnings.</span><span class="zh">在「最後一行」之後還會列出股利與保留盈餘增加數。</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>A</b></div><div class="expl"><span class="en">Assets and liabilities are shown on the <b>balance sheet</b>, not the income statement.</span><span class="zh">資產與負債列在<b>資產負債表</b>，不在損益表。</span></div>
-</details></div>
-<div class="q">
-<div class="qn">Q34</div><div class="stem"><span class="en">Which statement regarding the balance sheet is <b>incorrect</b>?</span><span class="zh">關於資產負債表的敘述，何者<b>錯誤</b>？</span></div><ol class="opts">
-<li data-l="A"><span class="en">It includes net income and financing expense.</span><span class="zh">它包含淨利與融資費用。</span></li>
-<li data-l="B"><span class="en">It is a snapshot of the firm's assets and liabilities.</span><span class="zh">它是公司資產與負債的快照。</span></li>
-<li data-l="C"><span class="en">A current asset has a life of less than one year.</span><span class="zh">流動資產的壽命少於一年。</span></li>
-<li data-l="D"><span class="en">The difference between total assets and total liabilities is shareholders' equity.</span><span class="zh">總資產減總負債為股東權益。</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>A</b></div><div class="expl"><span class="en">Net income and financing expense (interest) are <b>income statement</b> items.</span><span class="zh">淨利與融資費用（利息）屬於<b>損益表</b>項目。</span></div>
-</details></div>
-<div class="q">
-<div class="qn">Q35</div><div class="stem"><span class="en">When examining a balance sheet, which argument is <b>correct</b>?</span><span class="zh">檢視資產負債表時，何者<b>正確</b>？</span></div><ol class="opts">
-<li data-l="A"><span class="en">A highly liquid asset can be sold without significant loss of value.</span><span class="zh">高流動性資產可以在不大幅損失價值下出售。</span></li>
-<li data-l="B"><span class="en">The more liquid a business is, the more likely it is to experience financial distress.</span><span class="zh">企業流動性越高，越可能陷入財務危機。</span></li>
-<li data-l="C"><span class="en">When the market value of a firm's assets does not match its book value, it is a problematic firm.</span><span class="zh">資產市價與帳面價值不符，代表公司有問題。</span></li>
-<li data-l="D"><span class="en">Managers and investors frequently will be interested in knowing the book value of the firm.</span><span class="zh">經理人與投資人常關心公司的帳面價值。</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>A</b></div><div class="expl"><span class="en">A is the slide's definition of liquidity. B is reversed (more liquid → <i>less</i> distress); C is false (market and book values are often very different); D is false (they care about <i>market</i> value).</span><span class="zh">A 是投影片對流動性的定義。B 講反了（流動性越高越<i>不</i>易財務危機）；C 錯（市價與帳面價值本來常不同）；D 錯（他們關心的是<i>市價</i>）。</span></div>
-</details></div>
-<div class="q">
-<div class="qn">Q36</div><div class="stem"><span class="en">When examining an income statement, which argument is <b>incorrect</b>?</span><span class="zh">檢視損益表時，何者<b>錯誤</b>？</span></div><ol class="opts">
-<li data-l="A"><span class="en">Accounting income should match the actual cash flows.</span><span class="zh">會計所得應與實際現金流量相符。</span></li>
-<li data-l="B"><span class="en">The most important noncash item is depreciation.</span><span class="zh">最重要的非現金項目是折舊。</span></li>
-<li data-l="C"><span class="en">The GAAP matching principle matches expenses required to generate revenue to the period of recognition.</span><span class="zh">GAAP 配合原則將產生收入的費用配合在收入認列的期間。</span></li>
-<li data-l="D"><span class="en">The depreciation deduction is an application of the matching principle.</span><span class="zh">折舊是配合原則的應用。</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>A</b></div><div class="expl"><span class="en">Accounting income differs from cash flow mainly because of noncash items such as depreciation (e.g., Bed Bath &amp; Beyond: net loss but positive cash flow).</span><span class="zh">會計所得與現金流量不同，主要因為折舊等非現金項目（例：Bed Bath &amp; Beyond 淨損但現金流量為正）。</span></div>
-</details></div>
-<div class="q">
-<div class="qn">Q37</div><div class="stem"><span class="en">Which statement regarding GAAP is <b>incorrect</b>?</span><span class="zh">關於 GAAP 的敘述，何者<b>錯誤</b>？</span></div><ol class="opts">
-<li data-l="A"><span class="en">A firm should recognize revenue when the earnings process is virtually complete.</span><span class="zh">收入應在賺取過程幾乎完成時認列。</span></li>
-<li data-l="B"><span class="en">Production and other costs of the sale should be recognized when revenue is recognized.</span><span class="zh">銷售相關的生產等成本應在收入認列時一併認列。</span></li>
-<li data-l="C"><span class="en">The actual cash outflows should occur when the production cost is recognized.</span><span class="zh">實際現金流出應發生在生產成本認列時。</span></li>
-<li data-l="D"><span class="en">The revenue is recognized at the time of sale.</span><span class="zh">收入於銷售時認列。</span></li>
-</ol><details><summary>Show answer 顯示答案</summary>
-<div class="ans">Answer 答案：<b>C</b></div><div class="expl"><span class="en">Under the matching principle, costs are recognized with the revenue, but the <b>actual cash outflows may occur at different times</b>.</span><span class="zh">依配合原則，成本與收入同時認列，但<b>實際現金流出可能發生在不同時間</b>。</span></div>
-</details></div>
+<div class="q" data-ans="0">
+<div class="qn">Q33</div><div class="stem">Which statement regarding the income statement is <b>incorrect</b>?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">It shows the current values of assets and liabilities.</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">It measures performance over a specified period of time.</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">The first thing reported on an income statement is revenue.</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">After the "bottom line", it also shows dividends and addition to retained earnings.</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>A</b></div><div class="expl"><span class="en">Assets and liabilities are shown on the <b>balance sheet</b>, not the income statement.</span><span class="zh">資產與負債列在<b>資產負債表</b>，不在損益表。</span></div>
+</div></div>
+<div class="q" data-ans="0">
+<div class="qn">Q34</div><div class="stem">Which statement regarding the balance sheet is <b>incorrect</b>?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">It includes net income and financing expense.</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">It is a snapshot of the firm's assets and liabilities.</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">A current asset has a life of less than one year.</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">The difference between total assets and total liabilities is shareholders' equity.</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>A</b></div><div class="expl"><span class="en">Net income and financing expense (interest) are <b>income statement</b> items.</span><span class="zh">淨利與融資費用（利息）屬於<b>損益表</b>項目。</span></div>
+</div></div>
+<div class="q" data-ans="0">
+<div class="qn">Q35</div><div class="stem">When examining a balance sheet, which argument is <b>correct</b>?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">A highly liquid asset can be sold without significant loss of value.</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">The more liquid a business is, the more likely it is to experience financial distress.</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">When the market value of a firm's assets does not match its book value, it is a problematic firm.</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">Managers and investors frequently will be interested in knowing the book value of the firm.</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>A</b></div><div class="expl"><span class="en">A is the slide's definition of liquidity. B is reversed (more liquid → <i>less</i> distress); C is false (market and book values are often very different); D is false (they care about <i>market</i> value).</span><span class="zh">A 是投影片對流動性的定義。B 講反了（流動性越高越<i>不</i>易財務危機）；C 錯（市價與帳面價值本來常不同）；D 錯（他們關心的是<i>市價</i>）。</span></div>
+</div></div>
+<div class="q" data-ans="0">
+<div class="qn">Q36</div><div class="stem">When examining an income statement, which argument is <b>incorrect</b>?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">Accounting income should match the actual cash flows.</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">The most important noncash item is depreciation.</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">The GAAP matching principle matches expenses required to generate revenue to the period of recognition.</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">The depreciation deduction is an application of the matching principle.</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>A</b></div><div class="expl"><span class="en">Accounting income differs from cash flow mainly because of noncash items such as depreciation (e.g., Bed Bath &amp; Beyond: net loss but positive cash flow).</span><span class="zh">會計所得與現金流量不同，主要因為折舊等非現金項目（例：Bed Bath &amp; Beyond 淨損但現金流量為正）。</span></div>
+</div></div>
+<div class="q" data-ans="2">
+<div class="qn">Q37</div><div class="stem">Which statement regarding GAAP is <b>incorrect</b>?</div><div class="opts">
+<button type="button" class="opt" data-i="0"><span class="ol">A</span><span class="ot">A firm should recognize revenue when the earnings process is virtually complete.</span></button>
+<button type="button" class="opt" data-i="1"><span class="ol">B</span><span class="ot">Production and other costs of the sale should be recognized when revenue is recognized.</span></button>
+<button type="button" class="opt" data-i="2"><span class="ol">C</span><span class="ot">The actual cash outflows should occur when the production cost is recognized.</span></button>
+<button type="button" class="opt" data-i="3"><span class="ol">D</span><span class="ot">The revenue is recognized at the time of sale.</span></button>
+</div><div class="reveal" hidden>
+<div class="verdict"></div><div class="ans">Correct answer 正解：<b>C</b></div><div class="expl"><span class="en">Under the matching principle, costs are recognized with the revenue, but the <b>actual cash outflows may occur at different times</b>.</span><span class="zh">依配合原則，成本與收入同時認列，但<b>實際現金流出可能發生在不同時間</b>。</span></div>
+</div></div>
 </section>
 </div>
 
@@ -1011,6 +1020,30 @@ The 10% is the <b>opportunity cost</b>.</span>
   });
   document.getElementById("toTop").addEventListener("click",function(e){
     e.preventDefault();window.scrollTo({top:0,behavior:"smooth"});
+  });
+  var right=0,done=0;
+  function upd(){document.getElementById("sc-right").textContent=right;document.getElementById("sc-done").textContent=done;}
+  document.querySelectorAll(".q").forEach(function(q){
+    var ans=+q.dataset.ans, btns=q.querySelectorAll(".opt"), rv=q.querySelector(".reveal"), vd=q.querySelector(".verdict");
+    btns.forEach(function(b){
+      b.addEventListener("click",function(){
+        if(q.dataset.done)return; q.dataset.done="1";
+        var pick=+b.dataset.i, ok=pick===ans;
+        btns.forEach(function(x){x.disabled=true; if(+x.dataset.i===ans)x.classList.add("right");});
+        if(!ok)b.classList.add("wrong");
+        vd.textContent= ok? "✓ Correct! 答對了" : "✗ Incorrect 答錯了";
+        vd.className="verdict "+(ok?"ok":"no");
+        rv.hidden=false; done++; if(ok)right++; upd();
+      });
+    });
+  });
+  document.getElementById("sc-reset").addEventListener("click",function(){
+    document.querySelectorAll(".q").forEach(function(q){
+      delete q.dataset.done; q.querySelector(".reveal").hidden=true;
+      q.querySelectorAll(".opt").forEach(function(x){x.disabled=false;x.classList.remove("right","wrong");});
+    });
+    right=0;done=0;upd();
+    var e=document.getElementById("v-part2"); if(e)e.scrollIntoView({behavior:"smooth"});
   });
 })();
 </script>
