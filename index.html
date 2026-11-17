@@ -646,7 +646,7 @@ The 10% is the <b>opportunity cost</b>.</span>
 
 <!-- ================= PART 2 ================= -->
 <div class="view" id="v-part2">
-<div class="note"><span class="tag">HOW TO USE</span><span class="en">The teacher's 6 in-class exercises (37 questions). Tap an option to answer: you will see whether it is right, the correct answer, and the explanation. The original PDFs have no answer key; answers were worked out from the slides and all calculations were checked.</span><span class="zh">老師的 6 份課堂練習（共 37 題）。點選項作答後，會顯示對錯、正解與中英解析。原檔沒有附答案，答案依投影片推導，計算皆已驗算。</span></div>
+<div class="note"><span class="tag">HOW TO USE</span><span class="en">The teacher's 6 in-class exercises (37 questions). Tap an option to answer: you will see whether it is right, the correct answer, and the explanation. Your answers are saved automatically in this browser. The original PDFs have no answer key; answers were worked out from the slides and all calculations were checked.</span><span class="zh">老師的 6 份課堂練習（共 37 題）。點選項作答後，會顯示對錯、正解與中英解析。作答進度會自動儲存在此瀏覽器。原檔沒有附答案，答案依投影片推導，計算皆已驗算。</span></div>
 <div class="scorebar" id="scorebar"><span>Score 得分：<b id="sc-right">0</b> / <b id="sc-done">0</b> answered 已作答 · total 37 題</span><button type="button" id="sc-reset">Reset 重新作答</button></div>
 <div class="chapnav"><a href="#part2" data-jump="ex1">Exercise 1</a><a href="#part2" data-jump="ex2">Exercise 2</a><a href="#part2" data-jump="ex3">Exercise 3</a><a href="#part2" data-jump="ex4">Exercise 4</a><a href="#part2" data-jump="ex5">Exercise 5</a><a href="#part2" data-jump="ex6">Exercise 6</a></div>
 <section class="chapter" id="ex1"><h2>Exercise 1<small>Ch 1 · Overview of Finance 財務導論</small></h2>
@@ -1021,28 +1021,33 @@ The 10% is the <b>opportunity cost</b>.</span>
   document.getElementById("toTop").addEventListener("click",function(e){
     e.preventDefault();window.scrollTo({top:0,behavior:"smooth"});
   });
+  var KEY="fm-exam-answers-v1", saved={};
+  try{saved=JSON.parse(localStorage.getItem(KEY)||"{}")||{};}catch(e){saved={};}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(saved));}catch(e){}}
   var right=0,done=0;
   function upd(){document.getElementById("sc-right").textContent=right;document.getElementById("sc-done").textContent=done;}
-  document.querySelectorAll(".q").forEach(function(q){
-    var ans=+q.dataset.ans, btns=q.querySelectorAll(".opt"), rv=q.querySelector(".reveal"), vd=q.querySelector(".verdict");
-    btns.forEach(function(b){
-      b.addEventListener("click",function(){
-        if(q.dataset.done)return; q.dataset.done="1";
-        var pick=+b.dataset.i, ok=pick===ans;
-        btns.forEach(function(x){x.disabled=true; if(+x.dataset.i===ans)x.classList.add("right");});
-        if(!ok)b.classList.add("wrong");
-        vd.textContent= ok? "✓ Correct! 答對了" : "✗ Incorrect 答錯了";
-        vd.className="verdict "+(ok?"ok":"no");
-        rv.hidden=false; done++; if(ok)right++; upd();
-      });
+  var qs=document.querySelectorAll(".q");
+  function answer(q,idx,pick,store){
+    if(q.dataset.done)return; q.dataset.done="1";
+    var ans=+q.dataset.ans, btns=q.querySelectorAll(".opt"), vd=q.querySelector(".verdict"), ok=pick===ans;
+    btns.forEach(function(x){x.disabled=true; if(+x.dataset.i===ans)x.classList.add("right"); if(+x.dataset.i===pick&&!ok)x.classList.add("wrong");});
+    vd.textContent= ok? "✓ Correct! 答對了" : "✗ Incorrect 答錯了";
+    vd.className="verdict "+(ok?"ok":"no");
+    q.querySelector(".reveal").hidden=false; done++; if(ok)right++; upd();
+    if(store){saved[idx]=pick;save();}
+  }
+  qs.forEach(function(q,idx){
+    q.querySelectorAll(".opt").forEach(function(b){
+      b.addEventListener("click",function(){answer(q,idx,+b.dataset.i,true);});
     });
+    if(saved[idx]!==undefined)answer(q,idx,+saved[idx],false);
   });
   document.getElementById("sc-reset").addEventListener("click",function(){
-    document.querySelectorAll(".q").forEach(function(q){
+    qs.forEach(function(q){
       delete q.dataset.done; q.querySelector(".reveal").hidden=true;
       q.querySelectorAll(".opt").forEach(function(x){x.disabled=false;x.classList.remove("right","wrong");});
     });
-    right=0;done=0;upd();
+    right=0;done=0;upd(); saved={}; try{localStorage.removeItem(KEY);}catch(e){}
     var e=document.getElementById("v-part2"); if(e)e.scrollIntoView({behavior:"smooth"});
   });
 })();
